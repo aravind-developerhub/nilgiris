@@ -1,0 +1,96 @@
+@import "tailwindcss"; 
+@layer components,utilities,base;
+
+@theme{
+    --breakpoint-bk4:710px;
+    --breakpoint-bk3:650px;
+    --breakpoint-sm:1000px;
+    --breakpoint-bk7:1020px;
+    --breakpoint-bk6:1075px;
+    --breakpoint-bk1:1050px;
+    --breakpoint-bk2:1150px;
+    --breakpoint-bk5:1190px;
+    --breakpoint-bk9:1360px;
+    --breakpoint-bk8:1395px;
+    --breakpoint-md:1500px;
+    --breakpoint-md:1500px;
+    --breakpoint-lg:2000px;
+}
+
+html{
+    scroll-behavior: smooth;
+    scroll-padding-top: 120px;
+}
+
+.hide-scrollbar::-webkit-scrollbar {
+    display: none;
+}
+.hide-scrollbar {
+    -ms-overflow-style: none;  /* IE and Edge */
+    scrollbar-width: none;     /* Firefox */
+}
+
+body{
+    font-family: garnett,-apple-system,blinkmacsystemfont,segoe ui,roboto,helvetica neue,arial,noto sans,liberation sans,sans-serif,apple color emoji,segoe ui emoji,segoe ui symbol,noto color emoji;
+}
+
+index{
+    background-color: #72E553;
+}
+
+nav a{
+    @apply mx-[10px] inline-flex items-center gap-2 text-[1rem] hover:bg-black hover:text-white px-[10px] py-[5px] rounded-[13px] 
+    sm:text-[1.3rem] ;
+    font-weight: 500;
+}
+
+nav.show{
+    @apply flex bg-[#72E553] absolute top-[100%] right-[-15px] pt-[10px] pb-[10px] mr-[10px] mb-[10px] border-[2px] border-solid rounded-[10px] z-[1];
+}
+
+.custom-scrollbar::-webkit-scrollbar {
+    height: 8px; /* For horizontal scrollbar */
+}
+
+.custom-scrollbar::-webkit-scrollbar-track {
+    background: black;
+}
+
+.custom-scrollbar::-webkit-scrollbar-thumb {
+    width: 4px; /* Thinner than the scrollbar track */
+    background-clip: padding-box; /* Ensures padding/border don't expand it */
+    background-color: #72E553; /* Your green shade */
+}
+
+.custom-nav-scrollbar::-webkit-scrollbar {
+    @apply mr-[30px];
+    width: 8px; /* Thickness for vertical scrollbar */
+}
+
+.custom-nav-scrollbar::-webkit-scrollbar-track {
+    background: white;
+    border-radius:10px;
+}
+
+.custom-nav-scrollbar::-webkit-scrollbar-thumb {
+    background-color: #72E553; /* Green shade */
+    background-clip: padding-box;
+    border-radius: 10px; /* Optional: makes the scrollbar thumb rounded */
+}
+
+.box-1, .box-2, .box-3 { @apply w-[30%] h-[30%] my-[2%]; }
+.box-1 > img, .box-2 > img, .box-3 > img { @apply w-full h-full object-cover; }
+.box-2-1, .box-2-2 { @apply w-full h-[48%] ; }
+.box-2-1 > img, .box-2-2 > img { @apply w-full h-full object-cover; }
+.box-2-2-1, .box-2-2-2 { @apply w-[48%] h-full; }
+.box-2-2-1 > img, .box-2-2-2 > img { @apply w-full h-full object-cover; }
+
+footer span,footer h2{
+    @apply text-base;
+}
+
+.product-description > div{
+    @apply mx-6;
+}
+
+

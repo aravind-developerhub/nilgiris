@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nilgiris - Login</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
+</head>
+
+<body class="bg-[#EFEFEF]">
+    <!-- Header bars -->
+    <div class="w-full h-[50px] bg-[#72E553] border-[3px] border-black"></div>
+    <div class="w-full h-[10px] bg-black border-[3px] border-black"></div>
+
+    <!-- Main content -->
+    <div class="flex flex-col md:flex-row min-h-screen md:min-h-[calc(100vh-60px)]">
+        <!-- Left side - Image -->
+        <div class="w-full md:w-1/2 flex items-center justify-center p-8">
+            <img src="https://d1sl07a7h3d3fr.cloudfront.net/rodeoadmin/store/6f10911e-4700-4c67-9696-f83e4b1aefa4-512x512.png"
+                alt="Nilgiris Logo" class="w-full max-w-md h-auto">
+        </div>
+
+        <!-- Right side - Login form -->
+        <div class="w-full md:w-1/2 flex items-center justify-center p-8">
+            <div class="w-full max-w-md bg-white rounded-lg shadow-md p-8">
+                <h1 class="text-4xl font-medium mb-2">Welcome!</h1>
+                <h2 class="text-3xl font-medium mb-8">
+                    Login <span class="text-2xl text-gray-500">or</span> Signup
+                </h2>
+
+                <!-- Email/Mobile form -->
+                <form id="loginForm" class="mb-6">
+                    <div class="mb-4">
+                        <label for="emailOrMobile" class="block text-sm font-medium text-gray-700 mb-1">
+                            Email or Mobile Number
+                        </label>
+                        <input type="text" id="emailOrMobile" name="emailOrMobile"
+                            placeholder="Enter your email or 10-digit mobile number"
+                            class="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-[#72E553] focus:border-transparent"
+                            required>
+                        <p id="error-message" class="text-red-500 text-sm mt-1"></p>
+                    </div>
+                    <button type="submit"
+                        class="w-full bg-[#72E553] hover:bg-[#5ec542] text-white font-medium py-2 px-4 rounded-md transition duration-300">
+                        Continue
+                    </button>
+                </form>
+
+                <!-- OTP verification form (hidden initially) -->
+                <div id="otpForm" class="hidden">
+                    <p class="text-sm text-gray-600 mb-4">
+                        We've sent a 6-digit OTP to your email/mobile number
+                    </p>
+                    <div class="flex justify-center mb-6">
+                        <input type="text" maxlength="1"
+                            class="w-12 h-12 text-center mx-1 border border-gray-300 rounded-md text-xl focus:outline-none focus:ring-2 focus:ring-[#72E553]">
+                        <input type="text" maxlength="1"
+                            class="w-12 h-12 text-center mx-1 border border-gray-300 rounded-md text-xl focus:outline-none focus:ring-2 focus:ring-[#72E553]">
+                        <input type="text" maxlength="1"
+                            class="w-12 h-12 text-center mx-1 border border-gray-300 rounded-md text-xl focus:outline-none focus:ring-2 focus:ring-[#72E553]">
+                        <input type="text" maxlength="1"
+                            class="w-12 h-12 text-center mx-1 border border-gray-300 rounded-md text-xl focus:outline-none focus:ring-2 focus:ring-[#72E553]">
+                        <input type="text" maxlength="1"
+                            class="w-12 h-12 text-center mx-1 border border-gray-300 rounded-md text-xl focus:outline-none focus:ring-2 focus:ring-[#72E553]">
+                        <input type="text" maxlength="1"
+                            class="w-12 h-12 text-center mx-1 border border-gray-300 rounded-md text-xl focus:outline-none focus:ring-2 focus:ring-[#72E553]">
+                    </div>
+                    <button type="button"
+                        class="w-full bg-[#72E553] hover:bg-[#5ec542] text-white font-medium py-2 px-4 rounded-md transition duration-300 mb-4">
+                        Verify OTP
+                    </button>
+                    <p class="text-sm text-gray-600 text-center">
+                        Didn't receive OTP? <a href="#" class="text-[#72E553] hover:underline">Resend</a>
+                    </p>
+                </div>
+
+                <div class="text-center text-sm text-gray-500 mt-6">
+                    By continuing, you agree to our <a href="#" class="text-[#72E553] hover:underline">Terms of
+                        Service</a>
+                    and <a href="#" class="text-[#72E553] hover:underline">Privacy Policy</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <div class="border-t border-gray-300 w-[98%] mx-auto"></div>
+    <div class="flex flex-col md:flex-row justify-between items-center py-2 px-6">
+        <span class="text-sm font-medium px-6">
+            Copyright ⓒ 2024 Nilgiris Supermarket Rights reserved.
+        </span>
+        <div class="flex flex-wrap justify-center gap-4 px-6 mt-2 md:mt-0">
+            <img src="./../images/visa.png" width="50" height="25" alt="Visa">
+            <img src="./../images/mastercard.png" width="50" height="25" alt="Mastercard">
+            <img src="./../images/rupay.png" width="50" height="25" alt="RuPay">
+            <img src="./../images/discover_card.png" width="50" height="25" alt="Discover">
+            <img src="./../images/netbanking.png" width="50" height="25" alt="Net Banking">
+            <img src="./../images/cash_on_delivery.png" width="50" height="25" alt="Cash on Delivery">
+        </div>
+    </div>
+    <div class="w-full h-[10px] bg-black border-[3px] border-black"></div>
+    <div class="w-full h-[50px] bg-[#72E553] border-[3px] border-black"></div>
+
+    <script>
+    let generatedOTP;
+    // Validation functions
+    function isValidEmail(email) {
+        const re = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+        return re.test(email);
+    }
+
+    function isValidIndianMobile(mobile) {
+        const cleaned = mobile.replace(/\D/g, '');
+        const re = /^[6-9]\d{9}$/;
+        return re.test(cleaned);
+    }
+
+    document.getElementById('loginForm').addEventListener('submit', function (e) {
+        e.preventDefault();
+        const input = document.getElementById('emailOrMobile').value.trim();
+        const errorElement = document.getElementById('error-message');
+
+        // Clear previous errors
+        errorElement.textContent = '';
+
+        // Validate input
+        if (!input) {
+            errorElement.textContent = 'Please enter email or mobile number';
+            return;
+        }
+
+        const isEmail = isValidEmail(input);
+        const isMobile = isValidIndianMobile(input);
+
+        if (!isEmail && !isMobile) {
+            errorElement.textContent = 'Please enter a valid email or Indian mobile number (10 digits starting with 6-9)';
+            return;
+        }
+
+        // Generate random 6-digit OTP
+        generatedOTP = Math.floor(100000 + Math.random() * 900000);
+        console.log('Generated OTP for testing:', generatedOTP);
+
+        // Show OTP form
+        document.getElementById('loginForm').classList.add('hidden');
+        document.getElementById('otpForm').classList.remove('hidden');
+        document.querySelector('#otpForm input').focus();
+        alert('Generated OTP for testing: ' + generatedOTP);
+    });
+
+    // OTP input auto-tabbing
+    const otpInputs = document.querySelectorAll('#otpForm input');
+    otpInputs.forEach((input, index) => {
+        input.addEventListener('input', (e) => {
+            if (e.target.value.length === 1 && index < otpInputs.length - 1) {
+                otpInputs[index + 1].focus();
+            }
+        });
+        
+        input.addEventListener('keydown', (e) => {
+            if (e.key === 'Backspace' && !e.target.value && index > 0) {
+                otpInputs[index - 1].focus();
+            }
+        });
+    });
+
+    // OTP verification
+    // OTP verification
+    document.querySelector('#otpForm button').addEventListener('click', function() {
+        const otpInputs = document.querySelectorAll('#otpForm input');
+        let enteredOTP = '';
+        otpInputs.forEach(input => enteredOTP += input.value);
+
+        if (enteredOTP == generatedOTP) {
+            // Create user object
+            const userInput = document.getElementById('emailOrMobile').value.trim();
+            const isEmail = isValidEmail(userInput);
+            
+            // Check if it's the admin email
+            if (userInput.toLowerCase() === 'admin@gmail.com') {
+                // Redirect admin to admin page
+                window.location.href = 'admin_fullpage.html';
+                return; // Exit the function early
+            }
+            
+            // Regular user flow
+            const userData = {
+                id: 'user_' + Math.random().toString(36).substr(2, 9),
+                isLoggedIn: true,
+                email: isEmail ? userInput : '',
+                phone: !isEmail ? userInput : '',
+                name: '',
+                gender: '',
+                cartItems: [],
+                wishlistItems: []
+            };
+
+            // Save to localStorage
+            localStorage.setItem('currentUser', JSON.stringify(userData));
+            localStorage.setItem('isLoggedIn', 'true');
+
+            // Redirect without query parameter
+            window.location.href = './../../../index.html';
+        } else {
+            // Show error message
+            alert('Invalid OTP. Please try again.');
+        }
+    });
+</script>
+</body>
+
+</html>

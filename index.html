@@ -1,0 +1,958 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nilgiris</title>
+    <link rel="stylesheet" href="./public/CSS/output.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
+    <script src="./public/JS/script.js"></script>
+    <!-- <script src="https://cdn.lordicon.com/lordicon.js"></script> -->
+    <!-- <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script> -->
+    <!-- <script src="https://cdn.tailwindcss.com"></script> -->
+</head>
+
+<body class="bg-[#EFEFEF] custom-nav-scrollbar">
+    <section id="side-shopping-cart"
+        class="side-shopping-cart top-0 right-0 hidden flex flex-col w-[400px] h-[100%] bg-[#EFEFEF] z-3 fixed px-[10px] shadow-2xl">
+        <div class="flex flex-row justify-between items-center font-bold text-[1.7rem] text-black px-[20px] mt-[10px]">
+            <span>shopping cart</span>
+            <svg width="33" height="34" viewBox="0 0 33 34" fill="none" xmlns="http://www.w3.org/2000/svg"
+                class="side-shopping-cart-close-button cursor-pointer"
+                onclick="document.getElementById('side-shopping-cart').classList.add('hidden');">
+                <rect x="0.5" y="0.96875" width="32" height="32" fill="white" stroke="#ECECEC"></rect>
+                <path
+                    d="M24.0254 22.8682L22.3994 24.4941L16.0127 18.0488L9.62598 24.4941L8 22.8682L14.4453 16.4814L8 10.0947L9.62598 8.46875L16.0127 14.9141L22.3994 8.46875L24.0254 10.0947L17.5801 16.4814L24.0254 22.8682Z"
+                    fill="#595959"></path>
+            </svg>
+        </div>
+        <div class="relative overflow-y-auto custom-nav-scrollbar mb-[150px] ">
+            <span class="cart-category font-bold text-[1.2rem] text-black px-[20px] mt-[15px]"></span>
+            <hr>
+            <div class="side-menu-cart-product-list flex flex-col">
+                <!-- // Update cart UI -->
+                <!-- function updateCartUI() -->
+            </div>
+        </div>
+        <div
+            class="side-menu-cart-sub-total w-[400px] h-[130px] bg-white flex flex-col flex-nowrap justify-between items-center fixed bottom-[0%] translate-x-[-10px] shadow-2xl">
+            <div class="flex flex-row space-x-50 items-center mt-[10px]">
+                <span class="text-[1.5rem]">Subtotal:</span>
+                <span></span>
+            </div>
+            <a href="./public/HTML/checkout_page.html">
+                <div
+                    class="w-[380px] h-[65px] mb-[10px] flex flex-row items-center justify-evenly bg-[#72E553] border-2 border-solid transition-transform duration-300 ease-in-out hover:shadow-2xl hover:scale-105 active:scale-95 cursor-pointer">
+                    <div>
+                        <i class="fa-solid fa-cart-shopping text-[1.5rem] mx-[2px]"></i>
+                        <div class="inline text-[1.1rem] text-[#292F37] font-[700]">VIEW CART</div>
+                    </div>
+                </div>
+            </a>
+        </div>
+    </section>
+    <section id="top"></section>
+    <header
+        class="navbar sticky top-0 flex flex-col flex-nowrap bg-[#72E553] h-[120px] border-[3px] border-black bk3:h-[140px] sm:h-[120px] z-2">
+        <div
+            class="navbar-top flex flex-row flex-nowrap justify-between items-center h-[100px] border-b-[3px] px-1 rounded border-solid sm:h-[110px]">
+            <div class="company-logo"><img src="./public/images/Nilgiris_logo.jpeg" alt="Nilgiris logo"
+                    class="w-26 h-auto bk4:w-36"></div>
+            <div class="relative group mx-[5px]">
+                <div id="location-navbar"
+                    class="cursor-pointer inline-flex items-center gap-2 text-[1.3rem] font-[500]">
+                    <i class="fa-solid fa-location-dot text-[1.5rem] bk3:text-[2rem]"></i>location
+                </div>
+            </div>
+            <div class="search-bar"><input type="text" placeholder="What are you looking for?"
+                    class="min-w-[235px]  bg-white px-4 py-2 border border-gray-300 rounded-lg shadow-lg focus:outline-none focus:ring-2 focus:ring-blue-500 placeholder:font-semibold bk4:w-[300px] bk1:w-[400px] bk2:w-[500px]" />
+            </div>
+            <div onmouseleave="hideMenuIfShown();" class="menu-and-nav-together relative">
+                <span href="" class="cursor-pointer block mx-[5px] text-[1.5rem] bk3:hidden" onclick="toggleMenu();"><i
+                        class="fa-solid fa-bars"></i></span>
+                <div class="toggle-menu-top-nav">
+                    <nav class=" flex-col flex-nowrap h-auto hidden bk3:flex bk3:flex-col bk3:flex-nowrap sm:flex-row">
+                        <div class="relative group profile-nav">
+                            <a href="#"><i class="fa-solid fa-circle-user text-[1.5rem] mx-[2px]"></i>Profile</a>
+
+                            <!-- Main Dropdown -->
+                            <div
+                                class="absolute hidden group-hover:flex flex-col w-[300px] space-y-2 px-[5px] py-[10px] bg-[#72E553] border-2 border-solid rounded-[10px] profile-dropdown right-0 z-10">
+
+                                <!-- Welcome/Login Section (shown when logged out) -->
+                                <div id="new-user" class="login-or-signup">
+                                    <span class="text-[1.5rem] font-[700]">Welcome</span><br>
+                                    <span class="text-[1rem] font-semibold">To access account and manage
+                                        orders</span><br>
+                                    <div onclick="window.location.href='./../public/html/login.html';"
+                                        class="w-[90%] h-[65px] mb-[10px] mt-[20px] flex flex-row items-center justify-center mx-auto bg-[#72E553] border-2 border-solid transition-transform duration-300 ease-in-out hover:shadow-2xl hover:scale-105 active:scale-95 cursor-pointer">
+                                        <div>
+                                            <div class="inline text-[1.1rem] text-[#292F37] font-[700]">Login/Sign Up
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <!-- Profile Section (shown when logged in) -->
+                                <div id="profile-section" class="hidden">
+                                    <!-- My Profile -->
+                                    <div class="relative group/profile">
+                                        <a href="#" id="profileLink" class="flex w-[95%] items-center">
+                                            <i class="fa-solid fa-circle-user text-[1.5rem] mx-[2px]"></i>
+                                            <span id="userGreeting">My Profile</span>
+                                        </a>
+                                        <!-- Nested Dropdown -->
+                                        <div
+                                            class="absolute hidden group-hover/profile:flex flex-col w-[150px] space-y-2 px-[5px] py-[10px] bg-[#72E553] border-2 border-solid rounded-[10px] left-35 sm:w-[200px] sm:left-43 top-full z-20">
+                                            <a href="./public/HTML/account.html"><i
+                                                    class="fa-solid fa-user text-[1.2rem] mx-[2px]"></i>Account</a>
+                                            <a href="#" class="logout"><i
+                                                    class="fa-solid fa-right-from-bracket text-[1.2rem] mx-[2px]"></i>Logout</a>
+                                        </div>
+                                    </div>
+
+                                    <!-- Other Links (shown when logged in) -->
+                                    <a href="./public/HTML/checkout_page.html" class="relative w-[95%]"><i
+                                            class="fa-solid fa-cart-shopping text-[1.5rem] mx-[2px]"></i>My Orders</a>
+                                    <a href="./public/HTML/wishlist.html" class="relative w-[95%]"><i
+                                            class="fa-solid fa-bookmark text-[1.5rem] mx-[2px]"></i>Wishlist</a>
+                                    <a href="./public/HTML/contact_us.html" class="relative w-[95%]"><i
+                                            class="fa-solid fa-headset"></i>Contact Support</a>
+                                </div>
+                            </div>
+                        </div>
+
+                        <a href="./public/HTML/wishlist.html"><i
+                                class="fa-solid fa-bookmark text-[1.5rem] mx-[2px]"></i>Wishlist</a>
+                        <a href="#" onclick="document.getElementById('side-shopping-cart').classList.toggle('hidden')">
+                            <i class="fa-solid fa-cart-shopping text-[1.5rem] mx-[2px]"></i>Cart
+                        </a>
+                    </nav>
+                </div>
+            </div>
+        </div>
+        <div class="nav-bar-bottom flex flex-row items-center bg-white h-[55px] px-2 space-x-10">
+            <a href="#" class="toggle-menu-bottom-nav inline-flex items-center gap-2">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                    stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                    class="lucide lucide-square-menu-icon w-8 h-8">
+                    <rect width="18" height="18" x="3" y="3" rx="2" />
+                    <path d="M7 8h10" />
+                    <path d="M7 12h10" />
+                    <path d="M7 16h10" />
+                </svg>
+                <span class="font-[500]">ALL</span>
+            </a>
+            <div class="categories-drop-down hidden gap-15 items-center font-[500] bk7:flex bk6:gap-20">
+                <a href="#" class="relative group inline-flex items-center gap-2">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="29" height="32" viewBox="0 0 29 32" fill="none"
+                        class="group-hover:hidden sm:w-6 sm:h-6">
+                        <g clip-path="url(#clip0_11929_43390)">
+                            <path
+                                d="M17.5283 12.8737L16.7516 12.9517L17.1419 12.2757L18.2798 10.3048L18.4034 10.0907L18.6501 10.1055L22.5303 10.3385C22.5303 10.3385 22.5303 10.3385 22.5303 10.3385C22.7408 10.3511 22.9217 10.1906 22.9343 9.98026C22.9469 9.7698 22.7865 9.58892 22.5761 9.57626C22.5761 9.57626 22.5761 9.57625 22.576 9.57625L19.4763 9.39019L18.8302 9.35141L19.1538 8.79091L19.8433 7.5967L19.9669 7.38261L20.2137 7.39742L24.0939 7.63034C24.0939 7.63034 24.0939 7.63034 24.0939 7.63034C24.3044 7.64296 24.4852 7.48254 24.4979 7.27215C24.5105 7.06168 24.3501 6.88081 24.1397 6.86814C24.1396 6.86814 24.1396 6.86814 24.1396 6.86814L21.0399 6.68208L20.3938 6.6433L20.7174 6.0828L21.5834 4.58286C22.5573 2.89582 24.7145 2.31785 26.4015 3.2918L26.4015 3.29181C28.0886 4.26583 28.6665 6.42298 27.6925 8.11001C27.6925 8.11001 27.6925 8.11001 27.6925 8.11001L26.4704 10.2268L26.4028 10.344L26.2779 10.396L24.672 11.0651C22.3753 12.0221 19.9814 12.6274 17.5283 12.8737Z"
+                                fill="#E0E0E0" stroke="black" stroke-width="0.8"></path>
+                            <path
+                                d="M11.8618 12.8094L11.5583 12.7715L11.5153 12.4687C11.4854 12.2583 11.4689 12.0424 11.4689 11.8219C11.4689 9.29818 13.5148 7.25234 16.0385 7.25234C16.8786 7.25234 17.666 7.48038 18.3426 7.8763L18.6859 8.07714L18.487 8.42154L15.9614 12.7961L15.8492 12.9904L15.6248 12.9959C15.4156 13.0011 15.206 13.0037 14.9961 13.0037C13.9422 13.0037 12.8965 12.9386 11.8618 12.8094Z"
+                                stroke="black" stroke-width="0.8"></path>
+                            <path
+                                d="M11.2208 9.5383L10.8175 10.3865L10.4854 9.50803C9.89099 7.9362 9.77961 6.74823 9.77597 6.70582L9.77595 6.70557C9.75815 6.49658 9.57408 6.34032 9.36268 6.35745C9.15285 6.37557 8.99727 6.56027 9.01512 6.77016L9.01512 6.7702C9.02224 6.85401 9.23119 9.14951 10.6571 11.6762L10.7078 11.766L10.7087 11.8691C10.7096 11.9561 10.7131 12.0439 10.7184 12.1337L10.7485 12.647L10.2435 12.5499C8.5647 12.2269 6.92013 11.7317 5.32274 11.0661L4.38173 10.674L4.01525 10.5213L4.1652 10.1537C4.24329 9.9623 4.33861 9.77801 4.45022 9.60338C3.49093 8.99761 2.87153 7.93184 2.87153 6.73787C2.87153 4.86447 4.39498 3.34102 6.26838 3.34102C6.43984 3.34102 6.61026 3.35427 6.77892 3.38057C7.28363 2.12437 8.50576 1.25625 9.91672 1.25625C11.3091 1.25625 12.5278 2.0992 13.0453 3.34102C14.6656 3.34167 16.0216 4.48178 16.3592 6.00052L16.4661 6.4812L15.9737 6.48729C13.8788 6.51321 12.0691 7.75376 11.2208 9.5383Z"
+                                fill="#E0E0E0" stroke="black" stroke-width="0.8"></path>
+                            <path
+                                d="M4.87416 13.1394C8.09841 14.4828 11.5043 15.164 14.9973 15.164C18.4903 15.164 21.8962 14.4828 25.1205 13.1394C25.6689 12.9108 26.2618 13.3535 26.1985 13.9443C25.938 16.3751 24.9953 25.2684 24.7844 27.2442C24.6568 28.4392 23.6542 29.3404 22.4523 29.3404H7.5424C6.34043 29.3404 5.33786 28.4392 5.21027 27.2442C4.99935 25.2684 4.05662 16.3751 3.79618 13.9442C3.73285 13.3535 4.32571 12.9108 4.87416 13.1394V13.1394ZM9.00361 24.1285C9.00361 24.5602 9.35364 24.9103 9.7854 24.9103H20.2092C20.641 24.9103 20.991 24.5602 20.991 24.1285V19.959C20.991 19.5272 20.641 19.1772 20.2092 19.1772H9.7854C9.35364 19.1772 9.00361 19.5272 9.00361 19.959V24.1285Z"
+                                stroke="black" stroke-width="1.5"></path>
+                            <path
+                                d="M20.5312 19.8586C20.5312 19.6929 20.3969 19.5586 20.2312 19.5586H9.76094C9.59525 19.5586 9.46094 19.6929 9.46094 19.8586V24.1824C9.46094 24.3481 9.59525 24.4824 9.76094 24.4824H20.2312C20.3969 24.4824 20.5312 24.3481 20.5312 24.1824V19.8586Z"
+                                fill="#E0E0E0"></path>
+                        </g>
+                        <defs>
+                            <clipPath id="clip0_11929_43390">
+                                <rect width="28" height="32" fill="white" transform="translate(0.765625)"></rect>
+                            </clipPath>
+                        </defs>
+                    </svg>
+                    <svg width="29" height="32" viewBox="0 0 29 32" fill="none" xmlns="http://www.w3.org/2000/svg"
+                        class="hidden group-hover:inline sm:w-6 sm:h-6">
+                        <path
+                            d="M24.5182 10.6959C22.2576 11.6378 19.902 12.2334 17.4883 12.4757L18.6262 10.5048L22.5063 10.7377C22.9373 10.7636 23.3077 10.4352 23.3336 10.0042C23.3594 9.57324 23.031 9.20288 22.6 9.17697L19.5003 8.99091L20.1897 7.7967L24.0699 8.02962C24.5009 8.05547 24.8713 7.72707 24.8971 7.2961C24.923 6.86512 24.5946 6.49477 24.1636 6.46886L21.0638 6.2828L21.9298 4.78286C22.7933 3.28714 24.7058 2.77471 26.2015 3.63822C27.6972 4.50178 28.2097 6.41429 27.3461 7.91001L26.124 10.0268L24.5182 10.6959Z"
+                            fill="#00A14B"></path>
+                        <path
+                            d="M14.9961 12.6037C13.9587 12.6037 12.9295 12.5396 11.9113 12.4124C11.8839 12.2194 11.8689 12.0224 11.8689 11.8219C11.8689 9.5191 13.7357 7.65234 16.0385 7.65234C16.8053 7.65234 17.5233 7.8603 18.1406 8.22154L15.615 12.5961C15.409 12.6011 15.2027 12.6037 14.9961 12.6037Z"
+                            fill="#00A14B"></path>
+                        <path
+                            d="M10.8595 9.36655C10.2818 7.83884 10.176 6.68924 10.1745 6.67163C10.1379 6.24143 9.75932 5.9234 9.32929 5.95884C8.8991 5.99543 8.57997 6.37387 8.61656 6.80406C8.6261 6.91633 8.84322 9.27592 10.3088 11.8728C10.3096 11.9682 10.3136 12.0628 10.3191 12.1571C8.66727 11.8393 7.04892 11.352 5.47659 10.6969L4.53557 10.3048C4.6592 10.0017 4.83161 9.71924 5.04765 9.47006C3.98634 8.99948 3.27153 7.94271 3.27153 6.73787C3.27153 5.08538 4.61589 3.74102 6.26838 3.74102C6.53023 3.74102 6.78942 3.77615 7.04313 3.84572C7.39749 2.56901 8.5586 1.65625 9.91672 1.65625C11.2395 1.65625 12.3846 2.51856 12.7705 3.75467C12.8626 3.74555 12.9534 3.74102 13.0439 3.74102C14.4729 3.74102 15.6707 4.74671 15.9688 6.08732C13.7153 6.1152 11.7708 7.44966 10.8595 9.36655Z"
+                            fill="#00A14B"></path>
+                        <path
+                            d="M4.87416 13.1394C8.09841 14.4828 11.5043 15.164 14.9973 15.164C18.4903 15.164 21.8962 14.4828 25.1205 13.1394C25.6689 12.9108 26.2618 13.3535 26.1985 13.9443C25.938 16.3751 24.9953 25.2684 24.7844 27.2442C24.6568 28.4392 23.6542 29.3404 22.4523 29.3404H7.5424C6.34043 29.3404 5.33786 28.4392 5.21027 27.2442C4.99935 25.2684 4.05662 16.3751 3.79618 13.9442C3.73285 13.3535 4.32571 12.9108 4.87416 13.1394ZM9.00361 24.1285C9.00361 24.5602 9.35365 24.9103 9.7854 24.9103H20.2092C20.641 24.9103 20.991 24.5602 20.991 24.1285V19.959C20.991 19.5272 20.641 19.1772 20.2092 19.1772H9.7854C9.35365 19.1772 9.00361 19.5272 9.00361 19.959V24.1285Z"
+                            fill="#00A14B"></path>
+                        <path
+                            d="M20.5312 19.8586C20.5312 19.6929 20.3969 19.5586 20.2312 19.5586H9.76094C9.59525 19.5586 9.46094 19.6929 9.46094 19.8586V24.1824C9.46094 24.3481 9.59525 24.4824 9.76094 24.4824H20.2312C20.3969 24.4824 20.5312 24.3481 20.5312 24.1824V19.8586Z"
+                            fill="white"></path>
+                    </svg>
+                    <span class="group-hover:text-[#00A14B]">Grocery & Fresh</span>
+                    <svg xmlns="http://www.w3.org/2000/svg" class="relative top-[2px] group-hover:text-[#00A14B]"
+                        width="13" height="8" viewBox="0 0 13 8" fill="none">
+                        <path d="M11.2969 1.32422L6.29688 6.32422L1.29688 1.32422" stroke="currentColor"
+                            stroke-opacity="0.75" stroke-width="1.5" stroke-linecap="square"></path>
+                    </svg>
+                    <div
+                        class="hidden group-hover:flex dropdown-grocery-category absolute w-[300px] h-[600px] top-5.5 left-0 bg-[#FFFFFF] flex-row space-x-4 px-10 py-7 pt-4">
+                        <div class="flex flex-col bg-[#FFFFFF] space-y-5">
+                            <!-- Fruits & Vegetables -->
+                            <div class="sub-category-fruits-and-vegetables flex flex-col space-y-2">
+                                <span class="font-bold text-white bg-[#00A14B] px-2 py-1 rounded-md">Fruits &
+                                    Vegetables</span>
+                                <span>Fresh Vegetables</span>
+                                <span>Fresh Fruits</span>
+                            </div>
+
+                            <!-- Diary & Icecream -->
+                            <div class="sub-category-diary-and-icecream flex flex-col space-y-2">
+                                <span class="font-bold text-white bg-[#00A14B] px-2 py-1 rounded-md">Diary And Icecream
+                                    Items</span>
+                                <span>Fresh Diary</span>
+                            </div>
+
+                            <!-- Breakfast & Instant Foods -->
+                            <div class="sub-category-breakfast-and-instant-foods flex flex-col space-y-2">
+                                <span class="font-bold text-white bg-[#00A14B] px-2 py-1 rounded-md">Breakfast & Instant
+                                    Foods</span>
+                                <span>Breakfast Cereals</span>
+                                <span>Ready To Cook</span>
+                            </div>
+
+                            <!-- Rice, Flours & Pulses -->
+                            <div class="sub-category-rice-flours-pulses flex flex-col space-y-2">
+                                <span class="font-bold text-white bg-[#00A14B] px-2 py-1 rounded-md">Rice, Flours &
+                                    Pulses</span>
+                                <span>Rice & Cereals</span>
+                                <span>Atta & Other Flours</span>
+                                <span>Dals & Pulses</span>
+                            </div>
+                        </div>
+                    </div>
+                </a>
+                <a href="#" class="relative group inline-flex items-center gap-2">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="32" viewBox="0 0 24 32" fill="none"
+                        class="group-hover:hidden sm:w-6 sm:h-6">
+                        <g clip-path="url(#clip0_11929_43399)">
+                            <path
+                                d="M20.3389 4.88991C20.3389 4.26291 20.6229 3.67691 20.3389 3.16991C19.6809 1.98291 18.3659 1.21391 16.8809 1.35191C15.0369 1.52491 13.6719 3.16091 13.6719 5.00991V13.7789L16.3389 13.3349V8.28591C16.3389 7.57891 16.6859 6.93891 17.2409 6.54391L16.3389 8.43691L17.2279 8.44091C18.5659 8.44091 19.7349 7.69891 20.3389 6.60491C20.6229 6.10291 20.3389 5.51691 20.3389 4.88991Z"
+                                fill="#E0E0E0"></path>
+                            <path
+                                d="M3.57153 7.99928C3.57153 7.37228 3.28753 6.78628 3.57153 6.27928C4.22953 5.09228 5.54453 4.32328 7.02953 4.46128C8.87353 4.63428 10.2385 6.27028 10.2385 8.11928V13.7773L7.57153 13.3333V11.3953C7.57153 10.6883 7.22453 10.0483 6.66953 9.65328L7.57153 11.5463L6.68253 11.5503C5.34453 11.5503 4.17553 10.8083 3.57153 9.71428C3.28753 9.21228 3.57153 8.62628 3.57153 7.99928Z"
+                                fill="#E0E0E0"></path>
+                            <path
+                                d="M18.1768 29.6686H5.73275C3.03475 29.6686 0.84375 27.6355 0.84375 25.132V13.9968C0.84375 13.543 1.24375 13.1719 1.73275 13.1719H7.01275C7.40875 13.1719 7.79975 13.2582 8.15075 13.4233C8.38175 13.531 8.63475 13.5839 8.89275 13.5839H15.0088C15.2668 13.5839 15.5247 13.5263 15.7507 13.4233C16.1017 13.2582 16.4977 13.1719 16.8927 13.1719H22.1768C22.6658 13.1719 23.0658 13.543 23.0658 13.9968V25.132C23.0658 27.6355 20.8748 29.6686 18.1768 29.6686ZM1.73275 13.9968V25.132C1.73275 27.1771 3.52875 28.8437 5.73275 28.8437H18.1768C20.3808 28.8437 22.1768 27.1771 22.1768 25.132V13.9968H16.8967C16.6387 13.9968 16.3808 14.0543 16.1548 14.1573C15.8038 14.3225 15.4078 14.4088 15.0128 14.4088H8.89675C8.50075 14.4088 8.10975 14.3225 7.75875 14.1573C7.52775 14.0543 7.26975 13.9968 7.01175 13.9968H1.73275Z"
+                                fill="black" stroke="black" stroke-width="0.5"></path>
+                            <path
+                                d="M12.3958 16.8893C12.3958 17.1343 12.1968 17.3333 11.9518 17.3333C11.7068 17.3333 11.5078 17.1343 11.5078 16.8893C11.5078 16.6443 11.7068 16.4453 11.9518 16.4453C12.1968 16.4453 12.3958 16.6443 12.3958 16.8893Z"
+                                fill="black"></path>
+                            <path
+                                d="M18.9818 4.88931C18.9818 5.13431 18.7828 5.33331 18.5378 5.33331C18.2928 5.33331 18.0938 5.13431 18.0938 4.88931C18.0938 4.64431 18.2928 4.44531 18.5378 4.44531C18.7828 4.44531 18.9818 4.64431 18.9818 4.88931Z"
+                                fill="black"></path>
+                            <path
+                                d="M13.7348 14.1718C13.5168 14.1718 13.3438 13.9988 13.3438 13.7808V5.01177C13.3438 2.93177 14.9078 1.14977 16.9078 0.962765C18.4808 0.815765 19.9838 1.60677 20.7438 2.98077C20.9968 3.43377 20.9218 3.90977 20.8548 4.32776C20.8238 4.52377 20.7928 4.70977 20.7928 4.89177C20.7928 5.07377 20.8238 5.26077 20.8548 5.45577C20.9218 5.87377 20.9968 6.34877 20.7438 6.80277C20.0458 8.05577 18.7258 8.83877 17.2908 8.83877L16.4018 8.83476C16.1838 8.83476 16.0108 8.65676 16.0108 8.43877C16.0108 8.22077 16.1708 8.05677 16.4068 8.04777L17.2958 8.05176C18.4428 8.05176 19.5048 7.42477 20.0648 6.42077C20.1808 6.21677 20.1487 5.96776 20.0868 5.57677C20.0508 5.36776 20.0158 5.13277 20.0158 4.88777C20.0158 4.64277 20.0518 4.40777 20.0868 4.19877C20.1487 3.81177 20.1798 3.56277 20.0648 3.35477C19.4518 2.25277 18.2468 1.62177 16.9848 1.73677C15.3848 1.88777 14.1318 3.32377 14.1318 5.00777V13.7808C14.1278 13.9988 13.9528 14.1718 13.7348 14.1718Z"
+                                fill="black"></path>
+                            <path
+                                d="M16.3988 13.7223C16.1808 13.7223 16.0078 13.5493 16.0078 13.3313V8.28229C16.0078 7.46429 16.4078 6.69529 17.0748 6.22029C17.2528 6.09629 17.4968 6.13629 17.6218 6.31329C17.7468 6.49029 17.7058 6.73529 17.5288 6.86029C17.0668 7.18429 16.7958 7.71829 16.7958 8.28229V13.3313C16.7918 13.5493 16.6168 13.7223 16.3988 13.7223Z"
+                                fill="black"></path>
+                            <path
+                                d="M15.5084 5.248C15.3084 5.248 15.1484 5.088 15.1484 4.888C15.1484 3.71 16.1084 2.75 17.2864 2.75C17.4864 2.75 17.6464 2.91 17.6464 3.11C17.6464 3.31 17.4864 3.47 17.2864 3.47C16.5044 3.47 15.8684 4.106 15.8684 4.888C15.8684 5.088 15.7084 5.248 15.5084 5.248Z"
+                                fill="black"></path>
+                            <path
+                                d="M5.94269 7.99869C5.94269 8.24369 5.74369 8.44269 5.49869 8.44269C5.25369 8.44269 5.05469 8.24369 5.05469 7.99869C5.05469 7.75369 5.25369 7.55469 5.49869 7.55469C5.74369 7.55469 5.94269 7.75369 5.94269 7.99869Z"
+                                fill="black"></path>
+                            <path
+                                d="M10.2993 14.1698C10.0813 14.1698 9.90826 13.9968 9.90826 13.7788V8.12083C9.90826 6.43683 8.65526 5.00083 7.05526 4.84983C5.79726 4.72983 4.58826 5.36583 3.97526 6.46783C3.85926 6.67183 3.89126 6.92083 3.95326 7.31183C3.98426 7.52083 4.02426 7.75583 4.02426 8.00083C4.02426 8.24583 3.98826 8.48083 3.95326 8.68983C3.89126 9.07683 3.86026 9.32583 3.97526 9.53383C4.53526 10.5428 5.59326 11.1648 6.74426 11.1648L7.62826 11.1608C7.62826 11.1608 7.62826 11.1608 7.63226 11.1608C7.84526 11.1608 8.02326 11.3338 8.02326 11.5518C8.02326 11.7698 7.85026 11.9428 7.63226 11.9478L6.74326 11.9518C5.30726 11.9518 3.98326 11.1738 3.28526 9.91583C3.03226 9.46283 3.10726 8.98683 3.17426 8.56883C3.20526 8.37283 3.23626 8.18683 3.23626 8.00483C3.23626 7.82283 3.20526 7.63583 3.17426 7.44083C3.10726 7.02283 3.03226 6.54783 3.28526 6.09383C4.04526 4.72083 5.55226 3.92983 7.12126 4.07583C9.12126 4.26283 10.6853 6.04483 10.6853 8.12483V13.7778C10.6893 13.9958 10.5163 14.1688 10.2983 14.1688L10.2993 14.1698Z"
+                                fill="black"></path>
+                            <path
+                                d="M7.63331 13.7214C7.41531 13.7214 7.24231 13.5484 7.24231 13.3304V11.3924C7.24231 10.8284 6.96631 10.2994 6.50931 9.97038C6.33131 9.84637 6.29131 9.60138 6.41631 9.42338C6.54131 9.24538 6.78531 9.20538 6.96331 9.33038C7.63031 9.80138 8.03031 10.5744 8.03031 11.3884V13.3304C8.02631 13.5484 7.85131 13.7214 7.63331 13.7214Z"
+                                fill="black"></path>
+                            <path
+                                d="M8.52081 8.35737C8.32081 8.35737 8.16081 8.19738 8.16081 7.99738C8.16081 7.21537 7.52481 6.57937 6.74281 6.57937C6.54281 6.57937 6.38281 6.41938 6.38281 6.21938C6.38281 6.01938 6.54281 5.85938 6.74281 5.85938C7.92081 5.85938 8.88081 6.81938 8.88081 7.99738C8.88081 8.19738 8.72081 8.35737 8.52081 8.35737Z"
+                                fill="black"></path>
+                            <path
+                                d="M4.82625 13.7009C2.66625 13.7009 0.90625 11.9409 0.90625 9.78087C0.90625 8.20287 1.84425 6.78487 3.29725 6.17188L3.58125 6.83887C2.39425 7.34087 1.63025 8.49687 1.63025 9.78087C1.63025 11.5409 3.06125 12.9719 4.82125 12.9719V13.7009H4.82625Z"
+                                fill="black"></path>
+                            <path d="M9.78906 5.85938H13.6691V6.58337H9.78906V5.85938Z" fill="black"></path>
+                            <path
+                                d="M19.0479 13.6997V12.9757C20.8079 12.9757 22.2389 11.5447 22.2389 9.78469C22.2389 8.50469 21.4789 7.34869 20.2969 6.84669L20.5809 6.17969C22.0249 6.79769 22.9629 8.21069 22.9629 9.78369C22.9669 11.9397 21.2129 13.6997 19.0479 13.6997Z"
+                                fill="black"></path>
+                        </g>
+                        <defs>
+                            <clipPath id="clip0_11929_43399">
+                                <rect width="23" height="32" fill="white" transform="translate(0.765625)"></rect>
+                            </clipPath>
+                        </defs>
+                    </svg>
+                    <svg width="24" height="33" viewBox="0 0 24 33" fill="none" xmlns="http://www.w3.org/2000/svg"
+                        class="hidden group-hover:inline sm:w-6 sm:h-6">
+                        <g clip-path="url(#clip0_12676_14409)">
+                            <path
+                                d="M20.2764 4.91334C20.2764 4.28634 20.5604 3.70034 20.2764 3.19334C19.6184 2.00634 18.3034 1.23734 16.8184 1.37534C14.9744 1.54834 13.6094 3.18434 13.6094 5.03334V13.8023L16.2764 13.3583V8.30934C16.2764 7.60234 16.6234 6.96235 17.1784 6.56735L16.2764 8.46034L17.1654 8.46434C18.5034 8.46434 19.6724 7.72234 20.2764 6.62835C20.5604 6.12635 20.2764 5.54034 20.2764 4.91334Z"
+                                fill="#5B59CE"></path>
+                            <path
+                                d="M3.50903 8.02272C3.50903 7.39572 3.22503 6.80972 3.50903 6.30272C4.16703 5.11572 5.48203 4.34672 6.96703 4.48472C8.81103 4.65772 10.176 6.29372 10.176 8.14272V13.8007L7.50903 13.3567V11.4187C7.50903 10.7117 7.16203 10.0717 6.60703 9.67672L7.50903 11.5697L6.62003 11.5737C5.28203 11.5737 4.11303 10.8317 3.50903 9.73772C3.22503 9.23572 3.50903 8.64972 3.50903 8.02272Z"
+                                fill="#5B59CE"></path>
+                            <path
+                                d="M18.1143 29.6921H5.67025C2.97225 29.6921 0.78125 27.659 0.78125 25.1554V14.0202C0.78125 13.5665 1.18125 13.1953 1.67025 13.1953H6.95025C7.34625 13.1953 7.73725 13.2816 8.08825 13.4468C8.31925 13.5544 8.57225 13.6073 8.83025 13.6073H14.9463C15.2043 13.6073 15.4622 13.5498 15.6882 13.4468C16.0392 13.2816 16.4352 13.1953 16.8302 13.1953H22.1143C22.6033 13.1953 23.0033 13.5665 23.0033 14.0202V25.1554C23.0033 27.659 20.8123 29.6921 18.1143 29.6921ZM1.67025 14.0202V25.1554C1.67025 27.2006 3.46625 28.8671 5.67025 28.8671H18.1143C20.3183 28.8671 22.1143 27.2006 22.1143 25.1554V14.0202H16.8342C16.5762 14.0202 16.3183 14.0778 16.0923 14.1808C15.7413 14.3459 15.3453 14.4322 14.9503 14.4322H8.83425C8.43825 14.4322 8.04725 14.3459 7.69625 14.1808C7.46525 14.0778 7.20725 14.0202 6.94925 14.0202H1.67025Z"
+                                fill="#5B59CE" stroke="#5B59CE" stroke-width="0.5"></path>
+                            <path
+                                d="M1.39062 25.8758V14.0438L1.7858 13.7695H22.6851V25.8758L19.3728 29.1483H3.79687L1.39062 25.8758Z"
+                                fill="#5B59CE"></path>
+                            <path
+                                d="M12.3333 16.9128C12.3333 17.1578 12.1343 17.3568 11.8893 17.3568C11.6443 17.3568 11.4453 17.1578 11.4453 16.9128C11.4453 16.6678 11.6443 16.4688 11.8893 16.4688C12.1343 16.4688 12.3333 16.6678 12.3333 16.9128Z"
+                                fill="#5B59CE"></path>
+                            <path
+                                d="M18.9193 4.91275C18.9193 5.15775 18.7203 5.35675 18.4753 5.35675C18.2303 5.35675 18.0312 5.15775 18.0312 4.91275C18.0312 4.66775 18.2303 4.46875 18.4753 4.46875C18.7203 4.46875 18.9193 4.66775 18.9193 4.91275Z"
+                                fill="white"></path>
+                            <path
+                                d="M13.6723 14.1952C13.4543 14.1952 13.2812 14.0222 13.2812 13.8042V5.0352C13.2812 2.9552 14.8453 1.1732 16.8453 0.986203C18.4183 0.839203 19.9213 1.6302 20.6813 3.0042C20.9343 3.4572 20.8593 3.9332 20.7923 4.3512C20.7613 4.5472 20.7303 4.7332 20.7303 4.9152C20.7303 5.0972 20.7613 5.2842 20.7923 5.4792C20.8593 5.8972 20.9343 6.3722 20.6813 6.8262C19.9833 8.0792 18.6633 8.8622 17.2283 8.8622L16.3393 8.8582C16.1213 8.8582 15.9483 8.6802 15.9483 8.4622C15.9483 8.2442 16.1083 8.0802 16.3443 8.0712L17.2333 8.0752C18.3803 8.0752 19.4423 7.4482 20.0023 6.4442C20.1183 6.2402 20.0862 5.9912 20.0243 5.6002C19.9883 5.3912 19.9533 5.1562 19.9533 4.9112C19.9533 4.6662 19.9893 4.4312 20.0243 4.2222C20.0862 3.8352 20.1173 3.5862 20.0023 3.3782C19.3893 2.2762 18.1843 1.6452 16.9223 1.7602C15.3223 1.9112 14.0693 3.3472 14.0693 5.0312V13.8042C14.0653 14.0222 13.8903 14.1952 13.6723 14.1952Z"
+                                fill="#5B59CE"></path>
+                            <path
+                                d="M16.3363 13.7457C16.1183 13.7457 15.9453 13.5727 15.9453 13.3547V8.30572C15.9453 7.48772 16.3453 6.71872 17.0123 6.24372C17.1903 6.11972 17.4343 6.15972 17.5593 6.33672C17.6843 6.51372 17.6433 6.75872 17.4663 6.88372C17.0043 7.20772 16.7333 7.74172 16.7333 8.30572V13.3547C16.7293 13.5727 16.5543 13.7457 16.3363 13.7457Z"
+                                fill="#5B59CE"></path>
+                            <path
+                                d="M15.4459 5.27144C15.2459 5.27144 15.0859 5.11144 15.0859 4.91144C15.0859 3.73344 16.0459 2.77344 17.2239 2.77344C17.4239 2.77344 17.5839 2.93344 17.5839 3.13344C17.5839 3.33344 17.4239 3.49344 17.2239 3.49344C16.4419 3.49344 15.8059 4.12944 15.8059 4.91144C15.8059 5.11144 15.6459 5.27144 15.4459 5.27144Z"
+                                fill="white"></path>
+                            <path
+                                d="M5.88019 8.02212C5.88019 8.26712 5.68119 8.46613 5.43619 8.46613C5.19119 8.46613 4.99219 8.26712 4.99219 8.02212C4.99219 7.77712 5.19119 7.57812 5.43619 7.57812C5.68119 7.57812 5.88019 7.77712 5.88019 8.02212Z"
+                                fill="white"></path>
+                            <path
+                                d="M10.2368 14.1933C10.0188 14.1933 9.84576 14.0203 9.84576 13.8023V8.14426C9.84576 6.46026 8.59276 5.02427 6.99276 4.87327C5.73476 4.75327 4.52576 5.38927 3.91276 6.49127C3.79676 6.69527 3.82876 6.94426 3.89076 7.33526C3.92176 7.54427 3.96176 7.77926 3.96176 8.02427C3.96176 8.26927 3.92576 8.50426 3.89076 8.71326C3.82876 9.10027 3.79776 9.34926 3.91276 9.55726C4.47276 10.5663 5.53076 11.1883 6.68176 11.1883L7.56576 11.1843C7.56576 11.1843 7.56576 11.1843 7.56976 11.1843C7.78276 11.1843 7.96076 11.3573 7.96076 11.5753C7.96076 11.7933 7.78776 11.9663 7.56976 11.9713L6.68076 11.9753C5.24476 11.9753 3.92076 11.1973 3.22276 9.93926C2.96976 9.48626 3.04476 9.01026 3.11176 8.59226C3.14276 8.39626 3.17376 8.21026 3.17376 8.02826C3.17376 7.84626 3.14276 7.65927 3.11176 7.46427C3.04476 7.04627 2.96976 6.57126 3.22276 6.11726C3.98276 4.74426 5.48976 3.95326 7.05876 4.09926C9.05876 4.28626 10.6228 6.06826 10.6228 8.14826V13.8013C10.6268 14.0193 10.4538 14.1923 10.2358 14.1923L10.2368 14.1933Z"
+                                fill="#5B59CE"></path>
+                            <path
+                                d="M7.57081 13.7448C7.35281 13.7448 7.17981 13.5718 7.17981 13.3538V11.4158C7.17981 10.8518 6.90381 10.3228 6.44681 9.99381C6.26881 9.86981 6.22881 9.62481 6.35381 9.44681C6.47881 9.26881 6.72281 9.22881 6.90081 9.35381C7.56781 9.82481 7.96781 10.5978 7.96781 11.4118V13.3538C7.96381 13.5718 7.78881 13.7448 7.57081 13.7448Z"
+                                fill="#5B59CE"></path>
+                            <path
+                                d="M8.45831 8.38081C8.25831 8.38081 8.09831 8.22081 8.09831 8.02081C8.09831 7.23881 7.46231 6.60281 6.68031 6.60281C6.48031 6.60281 6.32031 6.44281 6.32031 6.24281C6.32031 6.04281 6.48031 5.88281 6.68031 5.88281C7.85831 5.88281 8.81831 6.84281 8.81831 8.02081C8.81831 8.22081 8.65831 8.38081 8.45831 8.38081Z"
+                                fill="white"></path>
+                            <path
+                                d="M4.76375 13.7243C2.60375 13.7243 0.84375 11.9643 0.84375 9.80431C0.84375 8.22631 1.78175 6.80831 3.23475 6.19531L3.51875 6.86231C2.33175 7.36431 1.56775 8.52031 1.56775 9.80431C1.56775 11.5643 2.99875 12.9953 4.75875 12.9953V13.7243H4.76375Z"
+                                fill="#5B59CE"></path>
+                            <path d="M9.72656 5.88281H13.6066V6.60681H9.72656V5.88281Z" fill="#5B59CE"></path>
+                            <path
+                                d="M18.9854 13.7231V12.9991C20.7454 12.9991 22.1764 11.5681 22.1764 9.80813C22.1764 8.52813 21.4164 7.37212 20.2344 6.87012L20.5184 6.20312C21.9624 6.82112 22.9004 8.23412 22.9004 9.80712C22.9044 11.9631 21.1504 13.7231 18.9854 13.7231Z"
+                                fill="#5B59CE"></path>
+                        </g>
+                        <defs>
+                            <clipPath id="clip0_12676_14409">
+                                <rect width="23" height="32" fill="white" transform="translate(0.703125 0.0234375)">
+                                </rect>
+                            </clipPath>
+                        </defs>
+                    </svg>
+                    <span class="group-hover:text-[#5B59CE]">Electronics & Appliances</span>
+                    <svg xmlns="http://www.w3.org/2000/svg" class="relative top-[2px] group-hover:text-[#5B59CE]"
+                        width="13" height="8" viewBox="0 0 13 8" fill="none">
+                        <path d="M11.2969 1.32422L6.29688 6.32422L1.29688 1.32422" stroke="currentColor"
+                            stroke-opacity="0.75" stroke-width="1.5" stroke-linecap="square"></path>
+                    </svg>
+                    <div
+                        class="hidden group-hover:flex dropdown-electronics-category absolute w-[300px] h-[600px] top-5.5 left-0 bg-[#FFFFFF] flex-row space-x-4 px-10 py-7 pt-4">
+                        <div class="flex flex-col bg-[#FFFFFF] space-y-5">
+                            <!-- Mobiles -->
+                            <div class="sub-category-mobiles flex flex-col space-y-2">
+                                <span class="font-bold text-white bg-[#5B59CE] px-2 py-1 rounded">Mobiles</span>
+                                <span>Smart Phones</span>
+                                <span>Feature Phones</span>
+                                <span>Tablets</span>
+                            </div>
+
+                            <!-- Washing Machine -->
+                            <div class="sub-category-washing-machine flex flex-col space-y-2">
+                                <span class="font-bold text-white bg-[#5B59CE] px-2 py-1 rounded">Washing Machine</span>
+                                <span>Semi-Automatic</span>
+                                <span>Top Load</span>
+                                <span>Front Load</span>
+                            </div>
+
+                            <!-- Kitchen Appliances -->
+                            <div class="sub-category-kitchen-appliances flex flex-col space-y-2">
+                                <span class="font-bold text-white bg-[#5B59CE] px-2 py-1 rounded">Kitchen
+                                    Appliances</span>
+                                <span>Microwaves</span>
+                                <span>Electric Ovens</span>
+                                <span>Blenders & Mixers</span>
+                                <span>Gas Stove and Hobs</span>
+                            </div>
+                        </div>
+                    </div>
+                </a>
+                <a href="#" class="relative group inline-flex items-center gap-2">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="35" height="32" viewBox="0 0 35 32" fill="none"
+                        class="group-hover:hidden sm:w-6 sm:h-6">
+                        <path
+                            d="M31.7887 20.1304C31.7546 20.1079 31.6664 20.0885 31.6298 20.0722L18.3742 14.2607V12.3726C20.8956 12.0718 22.1406 10.4219 22.1406 8.30051C22.1406 5.95156 20.4739 4.17969 18.2286 4.17969C15.8712 4.17969 13.8931 6.10724 13.8931 8.3893C13.8931 8.78192 14.2209 9.10079 14.6167 9.10079C14.7346 9.10079 14.8443 9.06581 14.942 9.01639C15.1739 8.89817 15.3391 8.66561 15.3391 8.3893C15.3391 6.90498 16.7019 5.60268 18.2538 5.60268C19.7042 5.60268 20.7575 6.73747 20.7575 8.30051C20.7575 9.83851 19.5044 10.9983 17.7961 10.9983C17.4003 10.9983 17.1135 11.3172 17.1135 11.7098V13.1003V14.4964C17.1135 14.5102 17.0857 14.5215 17.087 14.5352L4.37863 20.493C2.50462 21.1627 1.8629 22.6863 2.06778 23.8492C2.27832 25.0453 3.30072 25.8155 4.6251 25.8155H29.8661C31.4338 25.8155 32.6636 25.0109 33.0752 23.6617C33.4818 22.3325 32.9523 20.8995 31.7887 20.1304ZM31.7023 23.336C31.4747 24.0831 30.8053 24.5651 29.8667 24.5651H4.6251C3.98404 24.5651 3.56354 24.2125 3.47152 23.6911C3.36691 23.0959 3.75266 22.2506 4.91059 21.8329L18.0634 15.6488L31.0391 21.3796C31.6488 21.8116 31.9211 22.6194 31.7023 23.336Z"
+                            fill="black"></path>
+                    </svg>
+                    <svg xmlns="http://www.w3.org/2000/svg" width="35" height="32" viewBox="0 0 35 32" fill="none"
+                        class="hidden group-hover:inline sm:w-6 sm:h-6">
+                        <path
+                            d="M31.7887 20.1304C31.7546 20.1079 31.6664 20.0885 31.6298 20.0722L18.3742 14.2607V12.3726C20.8956 12.0718 22.1406 10.4219 22.1406 8.30051C22.1406 5.95156 20.4739 4.17969 18.2286 4.17969C15.8712 4.17969 13.8931 6.10724 13.8931 8.3893C13.8931 8.78192 14.2209 9.10079 14.6167 9.10079C14.7346 9.10079 14.8443 9.06581 14.942 9.01639C15.1739 8.89817 15.3391 8.66561 15.3391 8.3893C15.3391 6.90498 16.7019 5.60268 18.2538 5.60268C19.7042 5.60268 20.7575 6.73747 20.7575 8.30051C20.7575 9.83851 19.5044 10.9983 17.7961 10.9983C17.4003 10.9983 17.1135 11.3172 17.1135 11.7098V13.1003V14.4964C17.1135 14.5102 17.0857 14.5215 17.087 14.5352L4.37863 20.493C2.50462 21.1627 1.8629 22.6863 2.06778 23.8492C2.27832 25.0453 3.30072 25.8155 4.6251 25.8155H29.8661C31.4338 25.8155 32.6636 25.0109 33.0752 23.6617C33.4818 22.3325 32.9523 20.8995 31.7887 20.1304ZM31.7023 23.336C31.4747 24.0831 30.8053 24.5651 29.8667 24.5651H4.6251C3.98404 24.5651 3.56354 24.2125 3.47152 23.6911C3.36691 23.0959 3.75266 22.2506 4.91059 21.8329L18.0634 15.6488L31.0391 21.3796C31.6488 21.8116 31.9211 22.6194 31.7023 23.336Z"
+                            fill="#C93C88"></path>
+                    </svg>
+                    <span class="group-hover:text-[#CE207B]">Home & Lifestyle</span>
+                    <svg xmlns="http://www.w3.org/2000/svg" class="relative top-[2px] group-hover:text-[#CE207B]"
+                        width="13" height="8" viewBox="0 0 13 8" fill="none">
+                        <path d="M11.2969 1.32422L6.29688 6.32422L1.29688 1.32422" stroke="currentColor"
+                            stroke-opacity="0.75" stroke-width="1.5" stroke-linecap="square"></path>
+                    </svg>
+                    <div
+                        class="hidden group-hover:flex dropdown-home-and-lifestyle-category absolute w-[300px] h-[600px] top-5.5 left-0 bg-[#FFFFFF] flex-row space-x-4 px-10 py-7 pt-4">
+                        <div class="flex flex-col bg-[#FFFFFF] space-y-5">
+                            <!-- Men's -->
+                            <div class="sub-category-mens flex flex-col space-y-2">
+                                <span class="font-bold text-white bg-[#C93C88] px-2 py-1 rounded-md">Men's</span>
+                                <span>Men's Top wear</span>
+                            </div>
+
+                            <!-- Kitchen & Dining -->
+                            <div class="sub-category-kitchen-dining flex flex-col space-y-2">
+                                <span class="font-bold text-white bg-[#C93C88] px-2 py-1 rounded-md">Kitchen &
+                                    Dining</span>
+                                <span>Cookware & Serveware</span>
+                                <span>Kitchen Storage & Organizer</span>
+                                <span>Bakeware & Other Accessories</span>
+                            </div>
+
+                            <!-- Women's -->
+                            <div class="sub-category-womens flex flex-col space-y-2">
+                                <span class="font-bold text-white bg-[#C93C88] px-2 py-1 rounded-md">Women's</span>
+                                <span>Women's Accessories</span>
+                                <span>Jewellery</span>
+                            </div>
+
+                            <!-- Home & Living -->
+                            <div class="sub-category-home-living flex flex-col space-y-2">
+                                <span class="font-bold text-white bg-[#C93C88] px-2 py-1 rounded-md">Home &
+                                    Living</span>
+                                <span>Cleaning Aids</span>
+                                <span>Laundry Accessories</span>
+                                <span>Furnishing</span>
+                                <span>Decorations & Party Accessories</span>
+                            </div>
+                        </div>
+                    </div>
+                </a>
+                <a href="#top-100-deals" class="group hover:text-[#D70040] inline-flex items-center gap-2">
+                    <svg width="33" height="32" viewBox="0 0 33 32" fill="none" xmlns="http://www.w3.org/2000/svg"
+                        class="group-hover:hidden sm:w-6 sm:h-6">
+                        <path fill-rule="evenodd" clip-rule="evenodd"
+                            d="M27.5778 5.37898C27.6519 4.84093 27.1903 4.38101 26.6523 4.45505C22.8449 4.9802 19.0147 3.39656 16.6844 0.324488C16.3563 -0.108363 15.7051 -0.107963 15.3764 0.324488C13.0461 3.39656 9.21754 4.98185 5.40859 4.45505C4.87059 4.3809 4.41052 4.84098 4.48467 5.37898C5.00816 9.19781 3.42617 13.0166 0.355738 15.3469C-0.0771127 15.6749 -0.0767127 16.3261 0.355738 16.6547C3.42617 18.9834 5.00816 22.8022 4.48467 26.6226C4.41052 27.1606 4.87059 27.6207 5.40859 27.5465C9.21585 27.0248 13.0461 28.6034 15.3764 31.6755C15.7051 32.108 16.3563 32.1083 16.6844 31.6755C19.0147 28.6034 22.8466 27.0263 26.6523 27.5465C27.1903 27.6206 27.6519 27.1607 27.5778 26.6226C27.0543 22.8022 28.6346 18.9834 31.7068 16.6547C32.1392 16.3261 32.1396 15.6749 31.7068 15.3469C28.6346 13.0166 27.0543 9.19781 27.5778 5.37898ZM16.0304 29.6309C18.5077 26.9628 22.0432 25.5056 25.6696 25.639C25.5337 22.0029 26.9935 18.475 29.6615 16.0006C26.9941 13.5257 25.5341 9.99845 25.6695 6.36369C22.0402 6.49966 18.5063 5.03677 16.0304 2.36925C13.5555 5.03629 10.0233 6.50062 6.39293 6.36412C6.52804 9.99918 5.06673 13.5261 2.40053 16.0006C5.06733 18.4746 6.52841 22.0023 6.39286 25.6386C10.0202 25.5047 13.5541 26.9633 16.0304 29.6309Z"
+                            fill="#1D1D1D"></path>
+                        <path fill-rule="evenodd" clip-rule="evenodd"
+                            d="M15.9358 6.01562C16.1032 6.01562 16.2388 6.15128 16.2388 6.31862V9.66355C16.2388 9.83093 16.1032 9.96655 15.9358 9.96655C15.7684 9.96655 15.6328 9.83093 15.6328 9.66355V6.31862C15.6328 6.15128 15.7684 6.01562 15.9358 6.01562Z"
+                            fill="#1D1D1D"></path>
+                        <path fill-rule="evenodd" clip-rule="evenodd"
+                            d="M21.8919 7.10934C22.0399 7.18739 22.0751 7.3566 21.9705 7.48725L19.94 10.026C19.8354 10.1568 19.6307 10.1994 19.4827 10.1214C19.3346 10.0433 19.2993 9.87415 19.4039 9.74337L21.4346 7.20464C21.5391 7.07396 21.7438 7.0313 21.8919 7.10934Z"
+                            fill="#1D1D1D"></path>
+                        <path fill-rule="evenodd" clip-rule="evenodd"
+                            d="M10.1701 7.10934C10.0221 7.18739 9.98685 7.3566 10.0913 7.48725L12.122 10.026C12.2265 10.1568 12.4313 10.1994 12.5793 10.1214C12.7273 10.0433 12.7626 9.87415 12.6581 9.74337L10.6274 7.20464C10.5229 7.07396 10.3181 7.0313 10.1701 7.10934Z"
+                            fill="#1D1D1D"></path>
+                        <path fill-rule="evenodd" clip-rule="evenodd"
+                            d="M15.9358 25.8427C16.1032 25.8427 16.2388 25.707 16.2388 25.5397V22.3928C16.2388 22.2255 16.1032 22.0898 15.9358 22.0898C15.7684 22.0898 15.6328 22.2255 15.6328 22.3928V25.5397C15.6328 25.707 15.7684 25.8427 15.9358 25.8427Z"
+                            fill="#1D1D1D"></path>
+                        <path fill-rule="evenodd" clip-rule="evenodd"
+                            d="M21.5606 24.803C21.7086 24.725 21.7439 24.5558 21.6394 24.4251L19.7289 22.0366C19.6245 21.906 19.4198 21.8633 19.2717 21.9414C19.1237 22.0194 19.0884 22.1886 19.1929 22.3193L21.1033 24.7078C21.2078 24.8384 21.4127 24.8811 21.5606 24.803Z"
+                            fill="#1D1D1D"></path>
+                        <path fill-rule="evenodd" clip-rule="evenodd"
+                            d="M10.506 24.803C10.3581 24.725 10.3228 24.5558 10.4273 24.4251L12.3377 22.0366C12.4423 21.906 12.647 21.8633 12.795 21.9414C12.9431 22.0194 12.9783 22.1886 12.8738 22.3193L10.9633 24.7078C10.8589 24.8384 10.6541 24.8811 10.506 24.803Z"
+                            fill="#1D1D1D"></path>
+                        <path
+                            d="M18.0124 12.7791L12.8027 17.9879C12.4616 18.329 12.4616 18.882 12.8027 19.2231C13.1437 19.5642 13.6968 19.5642 14.0378 19.2231L19.2471 14.0139C19.5879 13.673 19.588 13.1204 19.2473 12.7795C18.9065 12.4382 18.3535 12.4381 18.0124 12.7791Z"
+                            fill="#1D1D1D"></path>
+                        <path
+                            d="M13.492 12.5938C13.0084 12.5938 12.6153 12.9868 12.6172 13.4704C12.6191 13.9512 13.0112 14.34 13.492 14.34C13.9743 14.34 14.3669 13.9491 14.3669 13.4669C14.3669 12.9846 13.9743 12.5938 13.492 12.5938Z"
+                            fill="#1D1D1D"></path>
+                        <path
+                            d="M19.4307 18.5295C19.4307 18.0472 19.0374 17.6562 18.5551 17.6562C18.0711 17.6562 17.6772 18.05 17.6797 18.5341C17.6822 19.0145 18.0747 19.4026 18.5551 19.4026C19.0374 19.4026 19.4307 19.0117 19.4307 18.5295Z"
+                            fill="#1D1D1D"></path>
+                    </svg>
+                    <svg width="33" height="32" viewBox="0 0 33 32" fill="none" xmlns="http://www.w3.org/2000/svg"
+                        class="hidden group-hover:inline sm:w-6 sm:h-6">
+                        <path fill-rule="evenodd" clip-rule="evenodd"
+                            d="M28.0934 5.37898C28.1676 4.84093 27.7059 4.38101 27.1679 4.45505C23.3606 4.9802 19.5303 3.39656 17.2 0.324488C16.8719 -0.108363 16.2207 -0.107963 15.892 0.324488C13.5617 3.39656 9.73317 4.98185 5.92422 4.45505C5.38621 4.3809 4.92614 4.84098 5.00029 5.37898C5.52379 9.19781 3.9418 13.0166 0.871363 15.3469C0.438512 15.6749 0.438912 16.3261 0.871363 16.6547C3.9418 18.9834 5.52379 22.8022 5.00029 26.6226C4.92614 27.1606 5.38621 27.6207 5.92422 27.5465C9.73147 27.0248 13.5617 28.6034 15.892 31.6755C16.2207 32.108 16.8719 32.1083 17.2 31.6755C19.5303 28.6034 23.3623 27.0263 27.1679 27.5465C27.7059 27.6206 28.1676 27.1607 28.0934 26.6226C27.5699 22.8022 29.1503 18.9834 32.2224 16.6547C32.6548 16.3261 32.6552 15.6749 32.2224 15.3469C29.1503 13.0166 27.5699 9.19781 28.0934 5.37898Z"
+                            fill="#D70040"></path>
+                        <path fill-rule="evenodd" clip-rule="evenodd"
+                            d="M16.4514 6.01172C16.6188 6.01172 16.7544 6.14738 16.7544 6.31472V9.65965C16.7544 9.82702 16.6188 9.96264 16.4514 9.96264C16.2841 9.96264 16.1484 9.82702 16.1484 9.65965V6.31472C16.1484 6.14738 16.2841 6.01172 16.4514 6.01172ZM22.4075 7.1063C22.5555 7.18435 22.5908 7.35356 22.4862 7.48421L20.4556 10.023C20.351 10.1537 20.1463 10.1964 19.9983 10.1184C19.8502 10.0403 19.8149 9.87111 19.9195 9.74034L21.9502 7.2016C22.0547 7.07092 22.2594 7.02826 22.4075 7.1063ZM10.6069 7.48421C10.5025 7.35356 10.5377 7.18435 10.6857 7.1063C10.8337 7.02826 11.0385 7.07092 11.143 7.2016L13.1737 9.74034C13.2782 9.87111 13.2429 10.0403 13.0949 10.1184C12.9469 10.1964 12.7421 10.1537 12.6376 10.023L10.6069 7.48421ZM16.4514 25.8386C16.6188 25.8386 16.7544 25.703 16.7544 25.5356V22.3888C16.7544 22.2214 16.6188 22.0858 16.4514 22.0858C16.2841 22.0858 16.1484 22.2214 16.1484 22.3888V25.5356C16.1484 25.703 16.2841 25.8386 16.4514 25.8386ZM22.155 24.4234C22.2595 24.554 22.2242 24.7232 22.0763 24.8013C21.9283 24.8793 21.7234 24.8367 21.619 24.706L19.7085 22.3175C19.604 22.1869 19.6393 22.0177 19.7873 21.9396C19.9354 21.8616 20.1401 21.9043 20.2446 22.0349L22.155 24.4234ZM11.0217 24.8013C10.8737 24.7232 10.8384 24.554 10.9429 24.4234L12.8533 22.0349C12.9579 21.9043 13.1627 21.8616 13.3106 21.9396C13.4587 22.0177 13.4939 22.1869 13.3894 22.3175L11.479 24.706C11.3745 24.8367 11.1698 24.8793 11.0217 24.8013ZM13.3183 17.9855L18.528 12.7767C18.8691 12.4356 19.4221 12.4357 19.7629 12.777C20.1036 13.118 20.1035 13.6705 19.7627 14.0115L14.5534 19.2206C14.2124 19.5618 13.6593 19.5618 13.3183 19.2206C12.9772 18.8795 12.9772 18.3265 13.3183 17.9855ZM14.0076 12.5904C13.5241 12.5904 13.1309 12.9835 13.1328 13.4671C13.1348 13.9479 13.5268 14.3367 14.0076 14.3367C14.4899 14.3367 14.8826 13.9458 14.8826 13.4635C14.8826 12.9813 14.4899 12.5904 14.0076 12.5904ZM19.0707 17.6552C19.553 17.6552 19.9463 18.0462 19.9463 18.5285C19.9463 19.0107 19.553 19.4016 19.0707 19.4016C18.5903 19.4016 18.1979 19.0135 18.1953 18.5331C18.1928 18.049 18.5867 17.6552 19.0707 17.6552Z"
+                            fill="white"></path>
+                    </svg>
+                    <span>Offers</span>
+                    <svg xmlns="http://www.w3.org/2000/svg" class="relative top-[2px]" width="13" height="8"
+                        viewBox="0 0 13 8" fill="none">
+                        <path d="M11.2969 1.32422L6.29688 6.32422L1.29688 1.32422" stroke="currentColor"
+                            stroke-opacity="0.75" stroke-width="1.5" stroke-linecap="square"></path>
+                    </svg>
+                </a>
+            </div>
+        </div>
+    </header>
+    <section id="hero-section" class="relative hero-section flex ">
+        <button
+            class="absolute banner-left-button top-[45%] left-[1%] cursor-pointer text-[2rem] text-[#72E553] sm:text-[2.5rem] md:text-[3rem] lg:text-[4rem]"
+            onclick="scrollLeftt();"><i class="fa-solid fa-circle-chevron-left"></i></button>
+        <div id="hero-section-banner" class="flex overflow-x-hidden hide-scrollbar ">
+            <a href="https://www.luluhypermarket.in/grocery/feeds/677a6b8bf482e0df16161306?feed_position=2&from="
+                class="block w-full h-full flex-shrink-0">
+                <img src="https://www.luluhypermarket.in/_next/image?url=https%3A%2F%2Fluluindia-prod-assets.s3.ap-south-1.amazonaws.com%2Fpims%2Fgrocery%2Ffeeds%2Fweb%2F0-1746593178274.webp&w=3840&q=75"
+                    alt="fruits and vegetables" class="w-[100vw] h-auto object-cover" />
+            </a>
+            <!-- Fabric Care -->
+            <a href="https://www.luluhypermarket.in/grocery/category/home-care-and-cleaning/fabric-care"
+                class="block w-full h-full flex-shrink-0">
+                <img src="https://www.luluhypermarket.in/_next/image?url=https%3A%2F%2Fluluindia-prod-assets.s3.ap-south-1.amazonaws.com%2Fpims%2Fgrocery%2Ffeeds%2Fweb%2F1-1747656481857.webp&w=3840&q=75"
+                    alt="detergents upto 50% off" class="w-[100vw] h-auto object-cover" />
+            </a>
+
+            <!-- Baby Care -->
+            <a href="https://www.luluhypermarket.in/grocery/category/baby-care-and-diapers/baby-care?cl2=baby-diapers-and-wipes"
+                class="block w-full h-full flex-shrink-0">
+                <img src="https://www.luluhypermarket.in/_next/image?url=https%3A%2F%2Fluluindia-prod-assets.s3.ap-south-1.amazonaws.com%2Fpims%2Fgrocery%2Ffeeds%2Fweb%2F-4-1733726753660.webp&w=3840&q=75"
+                    alt="baby care" class="w-[100vw] h-auto object-cover" />
+            </a>
+
+            <!-- Nuts and Dry Fruits -->
+            <a href="https://www.luluhypermarket.in/grocery/category/dry-fruits-and-nuts"
+                class="block w-full h-full flex-shrink-0">
+                <img src="https://www.luluhypermarket.in/_next/image?url=https%3A%2F%2Fluluindia-prod-assets.s3.ap-south-1.amazonaws.com%2Fpims%2Fgrocery%2Ffeeds%2Fweb%2F4-1747723799078.webp&w=3840&q=75"
+                    alt="nuts and dry fruits" class="w-[100vw] h-auto object-cover" />
+            </a>
+        </div>
+        <button
+            class="banner-right-button absolute top-[45%] right-[1%] cursor-pointer text-[2rem] text-[#72E553] sm:text-[2.5rem] md:text-[3rem] lg:text-[4rem]"
+            onclick="scrollRight();"><i class="fa-solid fa-circle-chevron-right"></i></button>
+    </section>
+    <section id="top-100-deals" class="top-100-deals flex flex-col font-bold text-[2rem] text-[#3D3D3D] px-[20px]">
+        <span>TOP 100 DEALS</span>
+    </section>
+    <section
+        class="products-slider-1 flex flex-nowrap justify-around space-x-[18px] mb-[20px] mx-[70px] overflow-x-auto custom-scrollbar scrollbar-wrapper ">
+        <!-- Render the product cards -->
+        <!-- renderProductCards(); -->
+    </section>
+    <section class="weekly-deals mt-[40px]">
+        <a href="https://www.luluhypermarket.in/grocery/feeds/6788e348f914ba031a7b38bf?feed_position=0&from="><img
+                src="https://www.luluhypermarket.in/_next/image?url=https%3A%2F%2Fluluindia-prod-assets.s3.ap-south-1.amazonaws.com%2Fpims%2Fgrocery%2Ffeeds%2Fweb%2F0-1746599674300.webp&w=3840&q=75"
+                alt="weekly deals" class="w-[95%] mx-auto"></a>
+    </section>
+    <section class="main-category mt-[20px]">
+        <span class="font-bold text-[2rem] text-[#3D3D3D] px-[20px] mt-[20px]">CATEGORY</span>
+        <div class="category flex flex-row flex-wrap px-6 mx-[60px]">
+            <!-- // Render the category cards -->
+            <!-- renderCategoryCards(); -->
+        </div>
+    </section>
+    <!-- <br><br> -->
+    <section class="categories-banner-1 flex flex-row flex-wrap items-center justify-evenly my-[10px]">
+        <div class="box-1 w-[30%]">
+            <a href="https://www.luluhypermarket.in/grocery/category/fruits-and-vegetables"><img
+                    src="https://www.luluhypermarket.in/_next/image?url=https%3A%2F%2Fluluindia-prod-assets.s3.ap-south-1.amazonaws.com%2Fpims%2Fgrocery%2Ffeeds%2Fweb%2F-0-1718878221554.webp&w=1200&q=75"
+                    alt="" class="w-full h-full object-cover"></a>
+        </div>
+
+        <div class="box-2 flex flex-col w-[30%] space-y-[4%]">
+            <div class="box-2-1 h-[48%]">
+                <a href="https://www.luluhypermarket.in/grocery/category/dairy-and-ice-creams/fresh-dairy"><img
+                        src="https://www.luluhypermarket.in/_next/image?url=https%3A%2F%2Fluluindia-prod-assets.s3.ap-south-1.amazonaws.com%2Fpims%2Fgrocery%2Ffeeds%2Fweb%2F-1-1718878221556.webp&w=1200&q=75"
+                        alt="" class="w-full h-full object-cover"></a>
+            </div>
+            <div class="box-2-2 flex flex-row h-[48%] justify-between">
+                <div class="box-2-2-1 w-[49%]">
+                    <a href="https://www.luluhypermarket.in/grocery/category/meat-fish-and-eggs/frozen-non-veg"><img
+                            src="https://www.luluhypermarket.in/_next/image?url=https%3A%2F%2Fluluindia-prod-assets.s3.ap-south-1.amazonaws.com%2Fpims%2Fgrocery%2Ffeeds%2Fweb%2F-2-1718878502977.webp&w=1200&q=75"
+                            alt="" class="w-full h-full object-cover"></a>
+                </div>
+                <div class="box-2-2-2 w-[49%]">
+                    <a href="https://www.luluhypermarket.in/grocery/category/bakery-and-breads"><img
+                            src="https://www.luluhypermarket.in/_next/image?url=https%3A%2F%2Fluluindia-prod-assets.s3.ap-south-1.amazonaws.com%2Fpims%2Fgrocery%2Ffeeds%2Fweb%2F-3-1718878221560.webp&w=1200&q=75"
+                            alt="" class="w-full h-full object-cover"></a>
+                </div>
+            </div>
+        </div>
+
+        <div class="box-3 w-[30%]">
+            <a href="https://www.luluhypermarket.in/grocery/category/meat-fish-and-eggs"><img
+                    src="https://www.luluhypermarket.in/_next/image?url=https%3A%2F%2Fluluindia-prod-assets.s3.ap-south-1.amazonaws.com%2Fpims%2Fgrocery%2Ffeeds%2Fweb%2F-4-1718878221562.webp&w=1200&q=75"
+                    alt="" class="w-full h-full object-cover"></a>
+        </div>
+    </section>
+    <section id="scroll-banner" class="relative flex items-center mb-[50px] mx-[70px]">
+        <span class="font-bold text-[2rem] text-[#3D3D3D] mt-[20px]">FAMILY CORNER</span>
+        <!-- Left Scroll Button -->
+        <button onclick="scrollLeftSmall()"
+            class="absolute left-[12%] z-1 text-[#72E553] text-2xl sm:text-3xl md:text-4xl cursor-pointer">
+            <svg width="55" height="55" viewBox="0 0 55 55" fill="none" xmlns="http://www.w3.org/2000/svg"
+                class="sm:w-[45px] sm:h-[45px] scale-x-[-1]">
+                <circle cx="27.5" cy="27.5" r="27" fill="white" stroke="#D1D1D1" />
+                <path
+                    d="M29.4246 21.2151C29.1016 20.9137 28.5953 20.9312 28.2939 21.2542C27.9925 21.5772 28.0099 22.0834 28.333 22.3849L31.8094 25.6291C31.9482 25.7587 32.0708 25.8733 32.1791 25.9762H21.7996C21.3578 25.9762 20.9996 26.3344 20.9996 26.7762C20.9996 27.218 21.3578 27.5762 21.7996 27.5762H32.2268C32.107 27.6906 31.9689 27.8198 31.8094 27.9687L28.3754 31.1734C28.0524 31.4749 28.0349 31.9811 28.3363 32.3041C28.6378 32.6271 29.144 32.6446 29.467 32.3431L32.9387 29.1033C33.3468 28.7225 33.7115 28.3822 33.9668 28.0683C34.2446 27.7269 34.4766 27.3187 34.4766 26.7989C34.4766 26.279 34.2445 25.8708 33.9668 25.5294C33.7115 25.2156 33.3468 24.8753 32.9386 24.4945L29.4246 21.2151Z"
+                    fill="black" />
+            </svg>
+
+        </button>
+
+        <!-- Image Scroll Container -->
+        <div id="scroll-images" class="flex overflow-x-auto gap-4 scroll-smooth px-0 w-full custom-scrollbar">
+            <a href="https://www.luluhypermarket.in/grocery/category/biscuits-and-chocolates"
+                class="flex-shrink-0 mb-[20px]">
+                <img src="https://www.luluhypermarket.in/_next/image?url=https%3A%2F%2Fluluindia-prod-assets.s3.ap-south-1.amazonaws.com%2Fpims%2Findex%2Ffeeds%2Fweb%2F-2-1741409595745.webp&w=640&q=75"
+                    class="w-[250px] h-auto object-cover rounded-lg hover:scale-105 transition-transform duration-300"
+                    alt="1" />
+            </a>
+            <a href="https://www.luluhypermarket.in/grocery/category/dry-fruits-and-nuts" class="flex-shrink-0">
+                <img src="https://www.luluhypermarket.in/_next/image?url=https%3A%2F%2Fluluindia-prod-assets.s3.ap-south-1.amazonaws.com%2Fpims%2Findex%2Ffeeds%2Fweb%2F-3-1741409595747.webp&w=640&q=75"
+                    class="w-[250px] h-auto object-cover rounded-lg hover:scale-105 transition-transform duration-300"
+                    alt="2" />
+            </a>
+            <a href="https://www.luluhypermarket.in/grocery/feeds/677e405e365aedc6a65fdd68?feed_position=0&from="
+                class="flex-shrink-0">
+                <img src="https://www.luluhypermarket.in/_next/image?url=https%3A%2F%2Fluluindia-prod-assets.s3.ap-south-1.amazonaws.com%2Fpims%2Findex%2Ffeeds%2Fweb%2F-4-1741409595748.webp&w=640&q=75"
+                    class="w-[250px] h-auto object-cover rounded-lg hover:scale-105 transition-transform duration-300"
+                    alt="3" />
+            </a>
+            <a href="https://www.luluhypermarket.in/grocery/feeds/66fe5c868ee391dfa2463101?feed_position=5&from=home"
+                class="flex-shrink-0">
+                <img src="https://www.luluhypermarket.in/_next/image?url=https%3A%2F%2Fluluindia-prod-assets.s3.ap-south-1.amazonaws.com%2Fpims%2Findex%2Ffeeds%2Fweb%2F-5-1741409595749.webp&w=640&q=75"
+                    class="w-[250px] h-auto object-cover rounded-lg hover:scale-105 transition-transform duration-300"
+                    alt="4" />
+            </a>
+            <a href="https://www.luluhypermarket.in/grocery/feeds/66fe5c868ee391dfa2463101?feed_position=6&from=home"
+                class="flex-shrink-0">
+                <img src="https://www.luluhypermarket.in/_next/image?url=https%3A%2F%2Fluluindia-prod-assets.s3.ap-south-1.amazonaws.com%2Fpims%2Findex%2Ffeeds%2Fweb%2F-6-1741409595750.webp&w=640&q=75"
+                    class="w-[250px] h-auto object-cover rounded-lg hover:scale-105 transition-transform duration-300"
+                    alt="5" />
+            </a>
+            <a href="https://www.luluhypermarket.in/grocery/category/baby-care-and-diapers" class="flex-shrink-0">
+                <img src="https://www.luluhypermarket.in/_next/image?url=https%3A%2F%2Fluluindia-prod-assets.s3.ap-south-1.amazonaws.com%2Fpims%2Findex%2Ffeeds%2Fweb%2F-7-1741409595751.webp&w=640&q=75"
+                    class="w-[250px] h-auto object-cover rounded-lg hover:scale-105 transition-transform duration-300"
+                    alt="6" />
+            </a>
+        </div>
+
+        <!-- Right Scroll Button -->
+        <button onclick="scrollRightSmall()"
+            class="absolute right-2 z-1 text-[#72E553] text-2xl sm:text-3xl md:text-4xl cursor-pointer">
+            <svg width="55" height="55" viewBox="0 0 55 55" fill="none" xmlns="http://www.w3.org/2000/svg"
+                class="sm:w-[45px] sm:h-[45px]">
+                <circle cx="27.5" cy="27.5" r="27" fill="white" stroke="#D1D1D1"></circle>
+                <path
+                    d="M29.4246 21.2151C29.1016 20.9137 28.5953 20.9312 28.2939 21.2542C27.9925 21.5772 28.0099 22.0834 28.333 22.3849L31.8094 25.6291C31.9482 25.7587 32.0708 25.8733 32.1791 25.9762H21.7996C21.3578 25.9762 20.9996 26.3344 20.9996 26.7762C20.9996 27.218 21.3578 27.5762 21.7996 27.5762H32.2268C32.107 27.6906 31.9689 27.8198 31.8094 27.9687L28.3754 31.1734C28.0524 31.4749 28.0349 31.9811 28.3363 32.3041C28.6378 32.6271 29.144 32.6446 29.467 32.3431L32.9387 29.1033C33.3468 28.7225 33.7115 28.3822 33.9668 28.0683C34.2446 27.7269 34.4766 27.3187 34.4766 26.7989C34.4766 26.279 34.2445 25.8708 33.9668 25.5294C33.7115 25.2156 33.3468 24.8753 32.9386 24.4945L29.4246 21.2151Z"
+                    fill="black"></path>
+            </svg>
+        </button>
+    </section>
+
+    <div class="border-[1px] border-black w-[98%] mx-auto"></div>
+    <footer class="flex flex-col bg-gray-100 text-gray-800 px-6 pt-5">
+        <div class="flex flex-row justify-center mb-[20px] text-[3rem] sm:text-[1rem]">
+            <img src="./public/images/Nilgiris_logo.jpeg" alt="Nilgiris logo" class="w-26 h-auto bk4:w-36">
+        </div>
+        <div class="footer-menu-list max-w-7xl mx-auto flex flex-wrap justify-between gap-8 mb-[10px] text-sm px-6">
+
+            <!-- Contact Us -->
+            <div class="flex flex-col min-w-[180px]">
+                <h2 class="font-bold mb-2">Contact Us</h2>
+                <a href="#" class="group flex items-center gap-2 hover:text-[#00A14B] transition">
+                    <i class="fa-solid fa-chevron-right text-sm"></i>
+                    <span
+                        class="relative after:absolute after:left-0 after:-bottom-0.25 after:w-0 after:h-[1px] after:bg-[#00A14B] after:transition-all after:duration-300 group-hover:after:w-full">
+                        Company Address
+                    </span>
+                </a>
+                <a href="#" class="group flex items-center gap-2 hover:text-[#00A14B] transition">
+                    <i class="fa-solid fa-chevron-right text-sm"></i>
+                    <span
+                        class="relative after:absolute after:left-0 after:-bottom-0.25 after:w-0 after:h-[1px] after:bg-[#00A14B] after:transition-all after:duration-300 group-hover:after:w-full">
+                        Company Email
+                    </span>
+                </a>
+                <a href="#" class="group flex items-center gap-2 hover:text-[#00A14B] transition">
+                    <i class="fa-solid fa-chevron-right text-sm"></i>
+                    <span
+                        class="relative after:absolute after:left-0 after:-bottom-0.25 after:w-0 after:h-[1px] after:bg-[#00A14B] after:transition-all after:duration-300 group-hover:after:w-full">
+                        Company Mobile
+                    </span>
+                </a>
+            </div>
+
+            <!-- Policies -->
+            <div class="flex flex-col min-w-[180px]">
+                <h2 class="font-bold mb-2">Policies</h2>
+                <a href="#" class="group flex items-center gap-2 hover:text-[#00A14B] transition"><i
+                        class="fa-solid fa-chevron-right text-sm"></i><span
+                        class="relative after:absolute after:left-0 after:-bottom-0.25 after:w-0 after:h-[1px] after:bg-[#00A14B] after:transition-all after:duration-300 group-hover:after:w-full">Privacy
+                        Policy</span></a>
+                <a href="#" class="group flex items-center gap-2 hover:text-[#00A14B] transition"><i
+                        class="fa-solid fa-chevron-right text-sm"></i><span
+                        class="relative after:absolute after:left-0 after:-bottom-0.25 after:w-0 after:h-[1px] after:bg-[#00A14B] after:transition-all after:duration-300 group-hover:after:w-full">Return
+                        Policy</span></a>
+                <a href="#" class="group flex items-center gap-2 hover:text-[#00A14B] transition"><i
+                        class="fa-solid fa-chevron-right text-sm"></i><span
+                        class="relative after:absolute after:left-0 after:-bottom-0.25 after:w-0 after:h-[1px] after:bg-[#00A14B] after:transition-all after:duration-300 group-hover:after:w-full">Services
+                        and Warranty</span></a>
+                <a href="#" class="group flex items-center gap-2 hover:text-[#00A14B] transition"><i
+                        class="fa-solid fa-chevron-right text-sm"></i><span
+                        class="relative after:absolute after:left-0 after:-bottom-0.25 after:w-0 after:h-[1px] after:bg-[#00A14B] after:transition-all after:duration-300 group-hover:after:w-full">Terms
+                        & Conditions</span></a>
+                <a href="#" class="group flex items-center gap-2 hover:text-[#00A14B] transition"><i
+                        class="fa-solid fa-chevron-right text-sm"></i><span
+                        class="relative after:absolute after:left-0 after:-bottom-0.25 after:w-0 after:h-[1px] after:bg-[#00A14B] after:transition-all after:duration-300 group-hover:after:w-full">Website
+                        Feasibility</span></a>
+            </div>
+
+            <!-- Know Us -->
+            <div class="flex flex-col min-w-[180px]">
+                <h2 class="font-bold mb-2">Know Us</h2>
+                <a href="#" class="group flex items-center gap-2 hover:text-[#00A14B] transition"><i
+                        class="fa-solid fa-chevron-right text-sm"></i><span
+                        class="relative after:absolute after:left-0 after:-bottom-0.25 after:w-0 after:h-[1px] after:bg-[#00A14B] after:transition-all after:duration-300 group-hover:after:w-full">About
+                        Us</span></a>
+                <a href="#" class="group flex items-center gap-2 hover:text-[#00A14B] transition"><i
+                        class="fa-solid fa-chevron-right text-sm"></i><span
+                        class="relative after:absolute after:left-0 after:-bottom-0.25 after:w-0 after:h-[1px] after:bg-[#00A14B] after:transition-all after:duration-300 group-hover:after:w-full">FAQ</span></a>
+                <a href="#" class="group flex items-center gap-2 hover:text-[#00A14B] transition"><i
+                        class="fa-solid fa-chevron-right text-sm"></i><span
+                        class="relative after:absolute after:left-0 after:-bottom-0.25 after:w-0 after:h-[1px] after:bg-[#00A14B] after:transition-all after:duration-300 group-hover:after:w-full">Feedback</span></a>
+                <a href="#" class="group flex items-center gap-2 hover:text-[#00A14B] transition"><i
+                        class="fa-solid fa-chevron-right text-sm"></i><span
+                        class="relative after:absolute after:left-0 after:-bottom-0.25 after:w-0 after:h-[1px] after:bg-[#00A14B] after:transition-all after:duration-300 group-hover:after:w-full">News
+                        and Events</span></a>
+                <a href="#" class="group flex items-center gap-2 hover:text-[#00A14B] transition"><i
+                        class="fa-solid fa-chevron-right text-sm"></i><span
+                        class="relative after:absolute after:left-0 after:-bottom-0.25 after:w-0 after:h-[1px] after:bg-[#00A14B] after:transition-all after:duration-300 group-hover:after:w-full">Sitemap</span></a>
+                <a href="#" class="group flex items-center gap-2 hover:text-[#00A14B] transition"><i
+                        class="fa-solid fa-chevron-right text-sm"></i><span
+                        class="relative after:absolute after:left-0 after:-bottom-0.25 after:w-0 after:h-[1px] after:bg-[#00A14B] after:transition-all after:duration-300 group-hover:after:w-full">Contact
+                        Us</span></a>
+            </div>
+
+            <!-- Account -->
+            <div class="flex flex-col min-w-[180px]">
+                <h2 class="font-bold mb-2">Account</h2>
+                <a href="#" class="group flex items-center gap-2 hover:text-[#00A14B] transition"><i
+                        class="fa-solid fa-chevron-right text-sm"></i><span
+                        class="relative after:absolute after:left-0 after:-bottom-0.25 after:w-0 after:h-[1px] after:bg-[#00A14B] after:transition-all after:duration-300 group-hover:after:w-full">My
+                        Profile</span></a>
+                <a href="#" class="group flex items-center gap-2 hover:text-[#00A14B] transition"><i
+                        class="fa-solid fa-chevron-right text-sm"></i><span
+                        class="relative after:absolute after:left-0 after:-bottom-0.25 after:w-0 after:h-[1px] after:bg-[#00A14B] after:transition-all after:duration-300 group-hover:after:w-full">My
+                        Orders</span></a>
+                <a href="#" class="group flex items-center gap-2 hover:text-[#00A14B] transition"><i
+                        class="fa-solid fa-chevron-right text-sm"></i><span
+                        class="relative after:absolute after:left-0 after:-bottom-0.25 after:w-0 after:h-[1px] after:bg-[#00A14B] after:transition-all after:duration-300 group-hover:after:w-full">Wishlists</span></a>
+                <a href="#" class="group flex items-center gap-2 hover:text-[#00A14B] transition"><i
+                        class="fa-solid fa-chevron-right text-sm"></i><span
+                        class="relative after:absolute after:left-0 after:-bottom-0.25 after:w-0 after:h-[1px] after:bg-[#00A14B] after:transition-all after:duration-300 group-hover:after:w-full">Refer
+                        a Friend</span></a>
+            </div>
+
+            <!-- Supports -->
+            <div class="flex flex-col min-w-[100px]">
+                <h2 class="font-bold mb-2">Supports</h2>
+                <a href="#" class="group flex items-center gap-2 hover:text-[#1877F2] transition"><i
+                        class="fa-brands fa-facebook text-sm"></i><span
+                        class="relative after:absolute after:left-0 after:-bottom-0.25 after:w-0 after:h-[1px] after:bg-[#00A14B] after:transition-all after:duration-300 group-hover:after:w-full">Facebook</span></a>
+                <a href="#" class="group flex items-center gap-2 transition">
+                    <i
+                        class="fa-brands fa-instagram text-sm group-hover:text-transparent group-hover:bg-clip-text group-hover:bg-gradient-to-r group-hover:from-[#405de6] group-hover:via-[#833ab4] group-hover:to-[#fd1d1d] "></i>
+
+                    <span
+                        class="relative text-sm text-gray-800 group-hover:text-transparent group-hover:bg-clip-text group-hover:bg-gradient-to-r group-hover:from-[#405de6] group-hover:via-[#833ab4] group-hover:to-[#fd1d1d] transition-all duration-300 
+                                after:absolute after:left-0 after:-bottom-0.25 after:h-[1px] after:w-0 after:bg-[#00A14B] group-hover:after:w-full after:transition-all after:duration-300">
+                        Instagram
+                    </span>
+                </a>
+                <a href="#" class="group flex items-center gap-2 hover:text-[#0e76a8] transition"><i
+                        class="fa-brands fa-linkedin text-sm"></i><span
+                        class="relative after:absolute after:left-0 after:-bottom-0.25 after:w-0 after:h-[1px] after:bg-[#00A14B] after:transition-all after:duration-300 group-hover:after:w-full">LinkedIn</span></a>
+                <a href="#" class="group flex items-center gap-2 hover:text-black transition"><i
+                        class="fa-brands fa-x-twitter text-sm"></i><span
+                        class="relative after:absolute after:left-0 after:-bottom-0.25 after:w-0 after:h-[1px] after:bg-[#00A14B] after:transition-all after:duration-300 group-hover:after:w-full">Twitter</span></a>
+                <a href="#" class="group flex items-center gap-2 hover:text-[#41C151] transition"><i
+                        class="fa-brands fa-whatsapp text-sm"></i><span
+                        class="relative after:absolute after:left-0 after:-bottom-0.25 after:w-0 after:h-[1px] after:bg-[#00A14B] after:transition-all after:duration-300 group-hover:after:w-full">WhatsApp</span></a>
+                <a href="#" class="group flex items-center gap-2 hover:text-[#FF0000] transition"><i
+                        class="fa-brands fa-youtube text-sm"></i><span
+                        class="relative after:absolute after:left-0 after:-bottom-0.25 after:w-0 after:h-[1px] after:bg-[#00A14B] after:transition-all after:duration-300 group-hover:after:w-full">YouTube</span></a>
+            </div>
+
+            <!-- Download -->
+            <div class="flex flex-col min-w-[180px]">
+                <h2 class="font-bold mb-2">Download Our App</h2>
+                <a href="#" class="group flex items-center gap-2 hover:text-black transition"><i
+                        class="fa-brands fa-apple text-sm"></i><span
+                        class="relative after:absolute after:left-0 after:-bottom-0.25 after:w-0 after:h-[1px] after:bg-[#00A14B] after:transition-all after:duration-300 group-hover:after:w-full">App
+                        Store Link</span></a>
+                <a href="#" class="group flex items-center gap-2 hover:text-[#00A14B] transition"><i
+                        class="fa-brands fa-google-play text-sm"></i><span
+                        class="relative after:absolute after:left-0 after:-bottom-0.25 after:w-0 after:h-[1px] after:bg-[#00A14B] after:transition-all after:duration-300 group-hover:after:w-full">Google
+                        Play Store Link</span></a>
+            </div>
+        </div>
+        <div class="border-[1px] border-gray-300 w-[98%] mx-auto"></div>
+        <div
+            class="registered-office-address-and-social-media flex flex-row flex-wrap justify-between items-center my-[10px]">
+            <div class="registered-office-address flex flex-col px-6 space-y-[5px]">
+                <span class="!text-[1.2rem] font-[500]">Registered Office Address:</span>
+                <span class="text-[10px] font-[400]">NILGIRIS SUPERMARKET, No. 127, T.V. Swamy Road (West), R.S. Puram,
+                    Coimbatore – 641002, Tamil Nadu, India</span>
+            </div>
+            <div class="social-media flex flex-row mr-[10px] px-6 space-x-4">
+                <span class="!text-[1.2rem] font-[500]">Stay in the Loop?</span>
+                <div class="flex gap-4 text-2xl text-gray-800">
+                    <!-- Facebook -->
+                    <a href="#" class="hover:text-[#1877F2] transition hover:scale-150">
+                        <i class="fa-brands fa-facebook"></i>
+                    </a>
+
+                    <!-- Instagram -->
+                    <a href="#" class="group transition hover:scale-150">
+                        <i
+                            class="fa-brands fa-instagram group-hover:text-transparent group-hover:bg-clip-text group-hover:bg-gradient-to-r group-hover:from-[#405de6] group-hover:via-[#833ab4] group-hover:to-[#fd1d1d] transition-all duration-300"></i>
+                    </a>
+
+                    <!-- LinkedIn -->
+                    <a href="#" class="hover:text-[#0e76a8] transition hover:scale-150">
+                        <i class="fa-brands fa-linkedin"></i>
+                    </a>
+
+                    <!-- Twitter -->
+                    <a href="#" class="hover:text-black transition hover:scale-150">
+                        <i class="fa-brands fa-x-twitter"></i>
+                    </a>
+
+                    <!-- WhatsApp -->
+                    <a href="#" class="hover:text-[#41C151] transition hover:scale-150">
+                        <i class="fa-brands fa-whatsapp"></i>
+                    </a>
+
+                    <!-- YouTube -->
+                    <a href="#" class="hover:text-[#FF0000] transition hover:scale-150">
+                        <i class="fa-brands fa-youtube"></i>
+                    </a>
+                </div>
+            </div>
+        </div>
+        <div class="border-[1px] border-gray-300 w-[98%] mx-auto"></div>
+        <div class="copy-rights-and-payment-methods flex flex-row flex-wrap justify-between items-center my-[5px]">
+            <span class="!text-[0.8rem] font-[500] px-6">Copyright ⓒ 2024 Nilgiris Supermarket Rights reserved.</span>
+            <div class="flex space-x-4 px-6">
+                <img src="./public/images/visa.png" width="50" height="25" alt="Visa">
+                <img src="./public/images/mastercard.png" width="50" height="25" alt="Mastercard">
+                <img src="./public/images/rupay.png" width="50" height="25" alt="RuPay">
+                <img src="./public/images/discover_card.png" width="50" height="25" alt="Discover">
+                <img src="./public/images/netbanking.png" width="50" height="25" alt="Net Banking">
+                <img src="./public/images/cash_on_delivery.png" width="50" height="25" alt="Cash on Delivery">
+            </div>
+        </div>
+    </footer>
+    <a id="scrollToTopBtn" href="#top" class="hidden">
+        <div
+            class="fixed bottom-[30px] right-[30px] w-[35px] xs:w-6 h-[35px] xs:h-6 xs:bottom-6 xs:right-[15px] pr-[2px] xs:p-0 bg-login-btn text-white rounded-full cursor-pointer transform scale-150 z-2 flex items-center justify-center bg-[#72E553]">
+            <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" id="arrow" fill="#ffffff"
+                class="xs:w-6 xs:h-4">
+                <path d="M17 10c-.3 0-.5-.1-.7-.3l-5-5c-.4-.4-.4-1 0-1.4s1-.4 1.4 0l5 5c.4.4.4 1 0 1.4-.2.2-.4.3-.7.3z">
+                </path>
+                <path
+                    d="M7 10c-.3 0-.5-.1-.7-.3-.4-.4-.4-1 0-1.4l5-5c.4-.4 1-.4 1.4 0s.4 1 0 1.4l-5 5c-.2.2-.4.3-.7.3z">
+                </path>
+                <path d="M12 21c-.6 0-1-.4-1-1V4c0-.6.4-1 1-1s1 .4 1 1v16c0 .6-.4 1-1 1z"></path>
+            </svg>
+        </div>
+    </a>
+    <div class="footer-bottom-bar">
+        <div class="w-full h-[10px] bg-black border-[3px] border-solid"></div>
+        <div class="w-full h-[50px] bg-[#72E553] border-[3px] border-solid"></div>
+    </div>
+    <script>
+        // Category data object
+        const categoryDatabase = {
+            "fruits-vegetables": {
+                id: "fruits-vegetables",
+                name: "Fruits & Vegetables",
+                imageUrl: "https://www.luluhypermarket.in/_next/image?url=https%3A%2F%2Fluluindia-prod-assets.s3.ap-south-1.amazonaws.com%2Fpims%2Fgrocery%2Fcategory%2FFruits%20%26%20Vegetables-image-1718719080798.webp&w=640&q=100",
+                link: "https://www.luluhypermarket.in/grocery/category/fruits-and-vegetables"
+            },
+            "meat-fish-eggs": {
+                id: "meat-fish-eggs",
+                name: "Meat, Fish & Eggs",
+                imageUrl: "https://www.luluhypermarket.in/_next/image?url=https%3A%2F%2Fluluindia-prod-assets.s3.ap-south-1.amazonaws.com%2Fpims%2Fgrocery%2Fcategory%2FMeat%2C%20Fish%20%26%20Eggs-image-1718719134450.webp&w=640&q=100",
+                link: "https://www.luluhypermarket.in/grocery/category/meat-fish-and-eggs"
+            },
+            "frozen-foods": {
+                id: "frozen-foods",
+                name: "Frozen Foods",
+                imageUrl: "https://www.luluhypermarket.in/_next/image?url=https%3A%2F%2Fluluindia-prod-assets.s3.ap-south-1.amazonaws.com%2Fpims%2Fgrocery%2Fcategory%2FFrozen%20Foods-image-1727354382752.webp&w=640&q=100",
+                link: "https://www.luluhypermarket.in/grocery/category/frozen-foods"
+            },
+            "bakery-breads": {
+                id: "bakery-breads",
+                name: "Bakery & Breads",
+                imageUrl: "https://www.luluhypermarket.in/_next/image?url=https%3A%2F%2Fluluindia-prod-assets.s3.ap-south-1.amazonaws.com%2Fpims%2Fgrocery%2Fcategory%2FBakery%20%26%20Breads-image-1718719380115.webp&w=640&q=100",
+                link: "https://www.luluhypermarket.in/grocery/category/bakery-and-breads"
+            },
+            "tea-coffee": {
+                id: "tea-coffee",
+                name: "Tea, Coffee & Malted Drinks",
+                imageUrl: "https://www.luluhypermarket.in/_next/image?url=https%3A%2F%2Fluluindia-prod-assets.s3.ap-south-1.amazonaws.com%2Fpims%2Fgrocery%2Fcategory%2FTea%2C%20Coffee%20%26%20Malted%20Drinks-image-1718719222528.webp&w=640&q=100",
+                link: "https://www.luluhypermarket.in/grocery/category/tea-coffee-and-malted-drinks"
+            },
+            "dairy-icecream": {
+                id: "dairy-icecream",
+                name: "Dairy & Ice Creams",
+                imageUrl: "https://www.luluhypermarket.in/_next/image?url=https%3A%2F%2Fluluindia-prod-assets.s3.ap-south-1.amazonaws.com%2Fpims%2Fgrocery%2Fcategory%2FDairy%20%26%20Ice%20Creams-image-1719313260777.webp&w=640&q=100",
+                link: "https://www.luluhypermarket.in/grocery/category/dairy-and-ice-creams"
+            },
+            "baby-care": {
+                id: "baby-care",
+                name: "Baby Care & Diapers",
+                imageUrl: "https://www.luluhypermarket.in/_next/image?url=https%3A%2F%2Fluluindia-prod-assets.s3.ap-south-1.amazonaws.com%2Fpims%2Fgrocery%2Fcategory%2FBaby%20Care%20%26%20Diapers-image-1718773195451.webp&w=640&q=100",
+                link: "https://www.luluhypermarket.in/grocery/category/baby-care-and-diapers"
+            },
+            "dry-fruits-nuts": {
+                id: "dry-fruits-nuts",
+                name: "Dry Fruits & Nuts",
+                imageUrl: "https://www.luluhypermarket.in/_next/image?url=https%3A%2F%2Fluluindia-prod-assets.s3.ap-south-1.amazonaws.com%2Fpims%2Fgrocery%2Fcategory%2FDry%20Fruits%20%26%20Nuts-image-1718719443704.webp&w=640&q=100",
+                link: "https://www.luluhypermarket.in/grocery/category/dry-fruits-and-nuts"
+            },
+            "biscuits-chocolates": {
+                id: "biscuits-chocolates",
+                name: "Biscuits & Chocolates",
+                imageUrl: "https://www.luluhypermarket.in/_next/image?url=https%3A%2F%2Fluluindia-prod-assets.s3.ap-south-1.amazonaws.com%2Fpims%2Fgrocery%2Fcategory%2FBiscuits%20%26%20Chocolates-image-1718719547587.webp&w=640&q=100",
+                link: "https://www.luluhypermarket.in/grocery/category/biscuits-and-chocolates"
+            }
+        };
+
+
+
+        // Function to render category cards
+        function renderCategoryCards() {
+            const categoryContainer = document.querySelector('.category');
+
+            // Clear existing content
+            categoryContainer.innerHTML = '';
+
+            // Loop through each category and create HTML
+            Object.values(categoryDatabase).forEach(category => {
+                const categoryCard = `
+      <a href="${category.link}" class="sub-category group flex flex-col cursor-pointer items-center mx-[20px] mb-[30px]">
+        <img src="${category.imageUrl}" alt="${category.name}" class="w-[200px] h-[200px] group-hover:scale-110 transition-all ease-in duration-300">
+        <span class="font-bold text-[1.3rem] text-[#3D3D3D] mt-[20px] ${category.id === 'tea-coffee' ? 'mx-auto' : ''}">
+          ${category.id === 'tea-coffee' ? 'Tea, Coffee & <br>Malted Drinks' : category.name}
+        </span>
+      </a>
+    `;
+
+                categoryContainer.insertAdjacentHTML('beforeend', categoryCard);
+            });
+        }
+
+
+    </script>
+
+
+</body>
+
+</html>

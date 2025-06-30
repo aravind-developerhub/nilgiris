@@ -1,0 +1,10 @@
+{
+  "dependencies": {
+    "@tailwindcss/cli": "^4.1.10",
+    "tailwind-scrollbar-hide": "^4.0.0",
+    "tailwindcss": "^4.1.10"
+  },
+  "scripts": {
+    "build": "tailwindcss -i ./input.css -o ./output.css --watch"
+  }
+}
